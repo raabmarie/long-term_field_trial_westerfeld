@@ -20,6 +20,7 @@ However, you can change its location via the main configuration file `config.tom
 ### Installation
 
 All dependencies are listed in the file [`requirements.txt`](requirements.txt).
+
 Create a new virtual environment in the root directory of this repository:
 ```
 python3 -m venv .venv
