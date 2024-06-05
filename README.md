@@ -38,9 +38,9 @@ python3 -m pip install -r requirements.txt
 
 Alternatively, your favorite IDE might also handle the previous steps.
 
-### Run
+### Run examples
 
 ```
-python3 main.py
+python3 examples/main.py
 ```
 
