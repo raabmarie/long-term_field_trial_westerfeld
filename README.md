@@ -6,17 +6,6 @@ Usage notes for the data set "Long-term field experiment Westerfeld".
 
 ## Getting started
 
-### Configuration
-
-Copy the example configuration file [`config.sample.toml`](config.sample.toml) to the new main configuration file `config.toml`:
-```
-cp config.sample.toml config.toml
-```
-Adjust the settings within the main configuration file `config.toml` according to your needs.
-
-By default, it is assumed that the data set is placed in the root directory of this source code repository.
-However, you can change its location via the main configuration file `config.toml` that you created previously.
-
 ### Installation
 
 All dependencies are listed in the file [`requirements.txt`](requirements.txt).
@@ -43,4 +32,3 @@ Alternatively, your favorite IDE might also handle the previous steps.
 ```
 python3 examples/main.py
 ```
-
