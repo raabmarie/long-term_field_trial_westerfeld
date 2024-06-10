@@ -142,7 +142,7 @@ df_raw = df_raw.sort_values(
 ).reset_index(drop=True)
 df_raw = df_raw[sorted(df_raw.columns)].reset_index(drop=True)
 
-# FInally, check for equality
+# Finally, check for equality
 if list(df_bacteria.columns) != list(df_raw.columns):
     print("1. The column names are not equal.")
 else:
