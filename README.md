@@ -50,7 +50,7 @@ Get the data set from the BonaRes Repository for Soil and Agricultural Research 
 Move the data set into the root of this source code repository, i.e., the data set should be located next to this
 README.
 
-## Run examples
+## Examples
 
 There are (TODO: specify number) examples.
 
