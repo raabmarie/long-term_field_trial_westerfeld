@@ -57,3 +57,11 @@ There are (TODO: specify number) examples.
 ```
 python3 examples/main.py
 ```
+
+## Validation
+
+There a some source code files in the [`validation`](validation) directory.
+We have used the source code files to compare the raw data set with the final data set created after the transformation
+for database storage purposes. We only provide these source code files for documentation purposes and to ensure
+traceability and transparency. It is not possible to run these source code files on your end because we cannot supply
+the raw data.
