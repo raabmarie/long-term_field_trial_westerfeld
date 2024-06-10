@@ -3,8 +3,8 @@
 [![code style](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
 
 Accompanying [Python](https://www.python.org) source code repository for the data set
-"Long-term field experiment Westerfeld". This source repository contains basic usage instructions, validation source
-code for quality assurance of the data set, and some examples for the actual use of the data set.
+"Long-term field experiment Westerfeld". This source code repository contains basic usage instructions, validation
+source code for quality assurance of the data set, and some examples for the actual use of the data set.
 
 ## Getting started
 
