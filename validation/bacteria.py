@@ -1,12 +1,17 @@
 import os
 import pandas as pd
+from common import validate
 
-db_file_path = "Westerfeld_DB_V_1_7_MR.xlsx"
+db_file_path = "Westerfeld_DB_V_1_10.xlsx"
 rd_file_path = "Bacteria_2015-2021.xlsx"
+miss_id_file_path = "Missing_identifiers_Bacteria.xlsx"
 diff_file_path = "Differences_Bacteria.xlsx"
 
 if os.path.exists(diff_file_path):
     os.remove(diff_file_path)
+
+if os.path.exists(miss_id_file_path):
+    os.remove(miss_id_file_path)
 
 # Load transformed / normalized data into data frames
 sheets = pd.read_excel(
@@ -15,6 +20,7 @@ sheets = pd.read_excel(
         "V1_0_BAKTERIEN",
         "V1_0_BIOPROJECT",
         "V1_0_HABITAT",
+        "V1_0_BENEFICIALS",
         "V1_0_KINGDOM",
         "V1_0_PHYLUM",
         "V1_0_CLASS",
@@ -25,8 +31,9 @@ sheets = pd.read_excel(
     ],
 )
 df_bacteria = sheets["V1_0_BAKTERIEN"]
-df_bioProject = sheets["V1_0_BIOPROJECT"]
+df_bio_project = sheets["V1_0_BIOPROJECT"]
 df_habitat = sheets["V1_0_HABITAT"]
+df_beneficials = sheets["V1_0_BENEFICIALS"]
 df_kingdom = sheets["V1_0_KINGDOM"]
 df_phylum = sheets["V1_0_PHYLUM"]
 df_class = sheets["V1_0_CLASS"]
@@ -41,12 +48,18 @@ df_raw = pd.read_excel(rd_file_path, sheet_name="RawData")
 # Merge the individual data frames
 df_bacteria = pd.merge(
     df_bacteria,
-    df_bioProject[["BioProject_ID", "BioProject_Name"]],
+    df_bio_project[["BioProject_ID", "BioProject_Name"]],
     on="BioProject_ID",
     how="left",
 )
 df_bacteria = pd.merge(
     df_bacteria, df_habitat[["Habitat_ID", "Habitat"]], on="Habitat_ID", how="left"
+)
+df_bacteria = pd.merge(
+    df_bacteria,
+    df_beneficials[["Beneficials_ID", "Beneficials"]],
+    on="Beneficials_ID",
+    how="left",
 )
 df_bacteria = pd.merge(
     df_bacteria, df_kingdom[["Kingdom_ID", "Kingdom_Name"]], on="Kingdom_ID", how="left"
@@ -76,6 +89,7 @@ df_bacteria.drop(
         "Bakterien_ID",
         "BioProject_ID",
         "Habitat_ID",
+        "Beneficials_ID",
         "Kingdom_ID",
         "Phylum_ID",
         "Class_ID",
@@ -83,8 +97,6 @@ df_bacteria.drop(
         "Order_ID",
         "Genus_ID",
         "Species_ID",
-        "Sample_Name",
-        "Internal_ID",
     ],
     inplace=True,
 )
@@ -106,6 +118,8 @@ df_bacteria.rename(
 )
 
 df_raw.drop(columns=["Parcel", "Crop", "Sample_Name", "Internal_ID"], inplace=True)
+
+# Create new unique identifier
 df_raw["Identifier"] = (
     df_raw["Year"].astype(str)
     + df_raw["Parcel_ID"].astype(str)
@@ -114,8 +128,6 @@ df_raw["Identifier"] = (
     + df_raw["BioProject_ID"].astype(str)
     + df_raw["Seq_ID"].astype(str)
 )
-
-# Create new unique identifier
 df_bacteria["Identifier"] = (
     df_bacteria["Year"].astype(str)
     + df_bacteria["Parcel_ID"].astype(str)
@@ -124,9 +136,6 @@ df_bacteria["Identifier"] = (
     + df_bacteria["BioProject_ID"].astype(str)
     + df_bacteria["Seq_ID"].astype(str)
 )
-
-# TODO: Remove the following line when the data from 2015 comes in
-# df_raw = df_raw[df_raw['Year'] != 2015]
 
 # Fix timestamps
 df_bacteria["Date"] = pd.to_datetime(df_bacteria["Date"], dayfirst=True, format="mixed")
@@ -143,24 +152,4 @@ df_raw = df_raw.sort_values(
 df_raw = df_raw[sorted(df_raw.columns)].reset_index(drop=True)
 
 # Finally, check for equality
-if list(df_bacteria.columns) != list(df_raw.columns):
-    print("1. The column names are not equal.")
-else:
-    print("1. The column names are equal.")
-
-    rd_num_rows = df_raw.shape[0]
-    db_num_rows = df_bacteria.shape[0]
-    if rd_num_rows != db_num_rows:
-        print("2. The number of rows do not match.")
-    else:
-        print("2. The number of rows match.")
-        are_equal = df_bacteria.equals(df_raw)
-        if not are_equal:
-            difference = df_bacteria.compare(df_raw)
-            difference.to_excel(diff_file_path)
-            diff_num_rows = difference.shape[0]
-            print(
-                f"3. The values do not match: {diff_num_rows} differences found. See {diff_file_path}."
-            )
-        else:
-            print("3. The values match.")
+validate(df_bacteria, df_raw, miss_id_file_path, diff_file_path)
