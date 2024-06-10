@@ -163,7 +163,7 @@ else:
     else:
         print("2. The number of rows match.")
         are_equal = df_fungi.equals(df_raw)
-        if are_equal == False:
+        if not are_equal:
             difference = df_fungi.compare(df_raw)
             difference.to_excel(diff_file_path)
             diff_num_rows = difference.shape[0]

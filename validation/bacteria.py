@@ -155,7 +155,7 @@ else:
     else:
         print("2. The number of rows match.")
         are_equal = df_bacteria.equals(df_raw)
-        if are_equal == False:
+        if not are_equal:
             difference = df_bacteria.compare(df_raw)
             difference.to_excel(diff_file_path)
             diff_num_rows = difference.shape[0]
