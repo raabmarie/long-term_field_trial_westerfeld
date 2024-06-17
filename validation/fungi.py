@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from common import validate
 
-db_file_path = "Westerfeld_DB_V_1_10.xlsx"
+db_file_path = "Westerfeld_DB_V_1_13.xlsx"
 rd_file_path = "Fungi_2015-2021.xlsx"
 miss_id_file_path = "Missing_identifiers_Fungi.xlsx"
 diff_file_path = "Differences_Fungi.xlsx"
@@ -17,7 +17,7 @@ if os.path.exists(miss_id_file_path):
 sheets = pd.read_excel(
     db_file_path,
     sheet_name=[
-        "V1_0_PILZE",
+        "V1_0_FUNGI",
         "V1_0_BIOPROJECT",
         "V1_0_HABITAT",
         "V1_0_BENEFICIALS",
@@ -28,10 +28,10 @@ sheets = pd.read_excel(
         "V1_0_ORDER",
         "V1_0_GENUS",
         "V1_0_SPECIES",
-        "V1_0_BEMERKUNGEN",
+        "V1_0_COMMENTS",
     ],
 )
-df_fungi = sheets["V1_0_PILZE"]
+df_fungi = sheets["V1_0_FUNGI"]
 df_bio_project = sheets["V1_0_BIOPROJECT"]
 df_habitat = sheets["V1_0_HABITAT"]
 df_beneficials = sheets["V1_0_BENEFICIALS"]
@@ -42,7 +42,7 @@ df_family = sheets["V1_0_FAMILY"]
 df_order = sheets["V1_0_ORDER"]
 df_genus = sheets["V1_0_GENUS"]
 df_species = sheets["V1_0_SPECIES"]
-df_bemerkungen = sheets["V1_0_BEMERKUNGEN"]
+df_comments = sheets["V1_0_COMMENTS"]
 
 # Load raw source data
 df_raw = pd.read_excel(rd_file_path, sheet_name="RawData")
@@ -55,11 +55,11 @@ df_fungi = pd.merge(
     how="left",
 )
 df_fungi = pd.merge(
-    df_fungi, df_habitat[["Habitat_ID", "Habitat"]], on="Habitat_ID", how="left"
+    df_fungi, df_habitat[["Habitat_ID", "Habitat_en"]], on="Habitat_ID", how="left"
 )
 df_fungi = pd.merge(
     df_fungi,
-    df_beneficials[["Beneficials_ID", "Beneficials"]],
+    df_beneficials[["Beneficials_ID", "Beneficials_en"]],
     on="Beneficials_ID",
     how="left",
 )
@@ -85,16 +85,13 @@ df_fungi = pd.merge(
     df_fungi, df_species[["Species_ID", "Species_Name"]], on="Species_ID", how="left"
 )
 df_fungi = pd.merge(
-    df_fungi,
-    df_bemerkungen[["Bemerkungen_ID", "Bemerkungen"]],
-    on="Bemerkungen_ID",
-    how="left",
+    df_fungi, df_comments[["Comments_ID", "Comments"]], on="Comments_ID", how="left"
 )
 
 # Remove and rename columns
 df_fungi.drop(
     columns=[
-        "Pilze_ID",
+        "Fungi_ID",
         "BioProject_ID",
         "Habitat_ID",
         "Beneficials_ID",
@@ -105,16 +102,17 @@ df_fungi.drop(
         "Order_ID",
         "Genus_ID",
         "Species_ID",
-        "Bemerkungen_ID",
+        "Comments_ID",
     ],
     inplace=True,
 )
 df_fungi.rename(
     columns={
-        "Versuchsjahr": "Year",
-        "Termin": "Date",
-        "Parzelle_ID": "Parcel_ID",
-        "Bemerkungen": "Remark",
+        "Experimental_Year": "Year",
+        "Plot_ID": "Parcel_ID",
+        "Habitat_en": "Habitat",
+        "Beneficials_en": "Beneficials",
+        "Comments": "Remark",
         "BioProject_Name": "BioProject_ID",
         "Kingdom_Name": "Kingdom",
         "Phylum_Name": "Phylum",

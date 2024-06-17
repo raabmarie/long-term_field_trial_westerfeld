@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from common import validate
 
-db_file_path = "Westerfeld_DB_V_1_10.xlsx"
+db_file_path = "Westerfeld_DB_V_1_13.xlsx"
 rd_file_path = "Plant_Lab_Results_2019-2021.xlsx"
 miss_id_file_path = "Missing_identifiers_PlantLab.xlsx"
 diff_file_path = "Differences_PlantLab.xlsx"
@@ -17,13 +17,13 @@ if os.path.exists(miss_id_file_path):
 sheets = pd.read_excel(
     db_file_path,
     sheet_name=[
-        "V1_0_PFLANZENLABORWERTE",
-        "V1_0_PROBENAHME_PFLANZEN",
+        "V1_0_PLANT_LAB",
+        "V1_0_PLANT_SAMPLING",
         "V1_0_BENEFICIALS",
     ],
 )
-df_plant_lab = sheets["V1_0_PFLANZENLABORWERTE"]
-df_plant_sample = sheets["V1_0_PROBENAHME_PFLANZEN"]
+df_plant_lab = sheets["V1_0_PLANT_LAB"]
+df_plant_sample = sheets["V1_0_PLANT_SAMPLING"]
 df_beneficials = sheets["V1_0_BENEFICIALS"]
 
 # Load raw source data
@@ -33,31 +33,28 @@ df_raw = pd.read_excel(rd_file_path, sheet_name="RawData")
 df_plant_lab = pd.merge(
     df_plant_lab,
     df_plant_sample[
-        [
-            "Probenahme_Pflanzen_ID",
-            "Versuchsjahr",
-            "Termin",
-            "Parzelle_ID",
-            "Beneficials_ID",
-        ]
+        ["Plant_Sampling_ID", "Experimental_Year", "Date", "Plot_ID", "Beneficials_ID"]
     ],
-    on="Probenahme_Pflanzen_ID",
+    on="Plant_Sampling_ID",
     how="left",
 )
 df_plant_lab = pd.merge(
     df_plant_lab,
-    df_beneficials[["Beneficials_ID", "Beneficials"]],
+    df_beneficials[["Beneficials_ID", "Beneficials_en"]],
     on="Beneficials_ID",
     how="left",
 )
 
 # Remove and rename columns
 df_plant_lab.drop(
-    columns=["Pflanzenlaborwerte_ID", "Probenahme_Pflanzen_ID", "Beneficials_ID"],
-    inplace=True,
+    columns=["Plant_Lab_ID", "Plant_Sampling_ID", "Beneficials_ID"], inplace=True
 )
 df_plant_lab.rename(
-    columns={"Versuchsjahr": "Year", "Termin": "Date", "Parzelle_ID": "Parcel_ID"},
+    columns={
+        "Experimental_Year": "Year",
+        "Plot_ID": "Parcel_ID",
+        "Beneficials_en": "Beneficials",
+    },
     inplace=True,
 )
 
@@ -85,9 +82,9 @@ df_plant_lab["Identifier"] = (
     + df_plant_lab["Beneficials"].astype(str)
 )
 
-# TODO: Remove the following two lines after further pre-processing
-df_plant_lab = df_plant_lab.round(3)
-df_raw = df_raw.round(3)
+# Round all digits
+df_plant_lab = df_plant_lab.round(10)
+df_raw = df_raw.round(10)
 
 # Sort by rows and columns
 df_plant_lab = df_plant_lab.sort_values(by="Identifier", ascending=True).reset_index(

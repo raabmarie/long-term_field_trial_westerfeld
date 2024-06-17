@@ -17,7 +17,7 @@ if os.path.exists(miss_id_file_path):
 sheets = pd.read_excel(
     db_file_path,
     sheet_name=[
-        "V1_0_BAKTERIEN",
+        "V1_0_BACTERIA",
         "V1_0_BIOPROJECT",
         "V1_0_HABITAT",
         "V1_0_BENEFICIALS",
@@ -30,7 +30,7 @@ sheets = pd.read_excel(
         "V1_0_SPECIES",
     ],
 )
-df_bacteria = sheets["V1_0_BAKTERIEN"]
+df_bacteria = sheets["V1_0_BACTERIA"]
 df_bio_project = sheets["V1_0_BIOPROJECT"]
 df_habitat = sheets["V1_0_HABITAT"]
 df_beneficials = sheets["V1_0_BENEFICIALS"]
@@ -53,11 +53,11 @@ df_bacteria = pd.merge(
     how="left",
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_habitat[["Habitat_ID", "Habitat"]], on="Habitat_ID", how="left"
+    df_bacteria, df_habitat[["Habitat_ID", "Habitat_en"]], on="Habitat_ID", how="left"
 )
 df_bacteria = pd.merge(
     df_bacteria,
-    df_beneficials[["Beneficials_ID", "Beneficials"]],
+    df_beneficials[["Beneficials_ID", "Beneficials_en"]],
     on="Beneficials_ID",
     how="left",
 )
@@ -86,7 +86,7 @@ df_bacteria = pd.merge(
 # Remove and rename columns
 df_bacteria.drop(
     columns=[
-        "Bakterien_ID",
+        "Bacteria_ID",
         "BioProject_ID",
         "Habitat_ID",
         "Beneficials_ID",
@@ -102,9 +102,10 @@ df_bacteria.drop(
 )
 df_bacteria.rename(
     columns={
-        "Versuchsjahr": "Year",
-        "Termin": "Date",
-        "Parzelle_ID": "Parcel_ID",
+        "Experimental_Year": "Year",
+        "Plot_ID": "Parcel_ID",
+        "Habitat_en": "Habitat",
+        "Beneficials_en": "Beneficials",
         "BioProject_Name": "BioProject_ID",
         "Kingdom_Name": "Kingdom",
         "Phylum_Name": "Phylum",

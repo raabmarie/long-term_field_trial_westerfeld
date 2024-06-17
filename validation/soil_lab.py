@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from common import validate
 
-db_file_path = "Westerfeld_DB_V_1_10.xlsx"
+db_file_path = "Westerfeld_DB_V_1_13.xlsx"
 rd_file_path = "Soil_Lab_Results_2009-2021.xlsx"
 miss_id_file_path = "Missing_identifiers_SoilLab.xlsx"
 diff_file_path = "Differences_SoilLab.xlsx"
@@ -17,8 +17,8 @@ if os.path.exists(miss_id_file_path):
 sheets = pd.read_excel(
     db_file_path,
     sheet_name=[
-        "V1_0_BODENLABORWERTE",
-        "V1_0_PROBENAHME_BODEN",
+        "V1_0_SOIL_LAB",
+        "V1_0_SOIL_SAMPLING",
         "V1_0_BENEFICIALS",
     ],
 )
@@ -34,38 +34,35 @@ df_soil_lab = pd.merge(
     df_soil_lab,
     df_soil_sample[
         [
-            "Probenahme_Boden_ID",
-            "Versuchsjahr",
-            "Termin",
-            "Parzelle_ID",
+            "Soil_Sampling_ID",
+            "Experimental_Year",
+            "Date",
+            "Plot_ID",
             "Beneficials_ID",
-            "Obergrenze",
-            "Untergrenze",
+            "Upper_Limit",
+            "Lower_Limit",
         ]
     ],
-    on="Probenahme_Boden_ID",
+    on="Soil_Sampling_ID",
     how="left",
 )
 df_soil_lab = pd.merge(
     df_soil_lab,
-    df_beneficials[["Beneficials_ID", "Beneficials"]],
+    df_beneficials[["Beneficials_ID", "Beneficials_en"]],
     on="Beneficials_ID",
     how="left",
 )
 
 # Remove and rename columns
 df_soil_lab.drop(
-    columns=["Bodenlaborwerte_ID", "Probenahme_Boden_ID", "Beneficials_ID"],
-    inplace=True,
+    columns=["Soil_Lab_ID", "Soil_Sampling_ID", "Beneficials_ID"], inplace=True
 )
 df_soil_lab.rename(
     columns={
-        "Versuchsjahr": "Year",
-        "Termin": "Date",
-        "Parzelle_ID": "Parcel_ID",
-        "Obergrenze": "Upper_Limit",
-        "Untergrenze": "Lower_Limit",
-        "NFK": "UFC",
+        "Experimental_Year": "Year",
+        "Beneficials_en": "Beneficials",
+        "Plot_ID": "Parcel_ID",
+        "WHC": "UFC",
     },
     inplace=True,
 )
@@ -94,9 +91,9 @@ df_soil_lab["Identifier"] = (
     + df_soil_lab["Lower_Limit"].astype(str)
 )
 
-# TODO: Remove the following two lines after further pre-processing
-df_soil_lab = df_soil_lab.round(3)
-df_raw = df_raw.round(3)
+# Round all digits
+df_soil_lab = df_soil_lab.round(10)
+df_raw = df_raw.round(10)
 
 # Sort by rows and columns
 df_soil_lab = df_soil_lab.sort_values(by="Identifier", ascending=True).reset_index(

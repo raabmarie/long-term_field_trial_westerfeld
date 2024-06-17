@@ -2,26 +2,26 @@ import os
 import pandas as pd
 from common import validate
 
-db_file_path = "Westerfeld_DB_V_1_10.xlsx"
+db_file_path = "Westerfeld_DB_V_1_13.xlsx"
 rd_file_path = "250324_Wurzeln_2019-2020.xlsx"
 miss_id_file_path = "Missing_identifiers_roots.xlsx"
 diff_file_path = "Differences_roots.xlsx"
 
-if os.path.exists(diff_file_path):
-    os.remove(diff_file_path)
-
 if os.path.exists(miss_id_file_path):
     os.remove(miss_id_file_path)
+
+if os.path.exists(diff_file_path):
+    os.remove(diff_file_path)
 
 # Load transformed / normalized data into data frames
 sheets = pd.read_excel(
     db_file_path,
     sheet_name=[
-        "V1_0_WURZELN",
+        "V1_0_ROOTS",
         "V1_0_BENEFICIALS",
     ],
 )
-df_roots = sheets["V1_0_WURZELN"]
+df_roots = sheets["V1_0_ROOTS"]
 df_beneficials = sheets["V1_0_BENEFICIALS"]
 
 # Load raw source data
@@ -30,24 +30,36 @@ df_raw = pd.read_excel(rd_file_path, sheet_name="RawData")
 # Merge the individual data frames
 df_roots = pd.merge(
     df_roots,
-    df_beneficials[["Beneficials_ID", "Beneficials"]],
+    df_beneficials[["Beneficials_ID", "Beneficials_en"]],
     on="Beneficials_ID",
     how="left",
 )
 
 # Remove and rename columns
-df_roots.drop(columns=["Wurzeln_ID", "Beneficials_ID"], inplace=True)
+df_roots.drop(columns=["Roots_ID", "Beneficials_ID"], inplace=True)
 df_roots.rename(
     columns={
-        "Versuchsjahr": "Year",
-        "Termin": "Date",
-        "Parzelle_ID": "Parcel_ID",
-        "Wurzellaenge": "total_root_length",
-        "Trockengewicht": "root_dry_weight",
-        "Indol_3_Essigsaeure": "Indol-3-essigsaeure",
+        "Experimental_Year": "Year",
+        "Beneficials_en": "Beneficials",
+        "Plot_ID": "Parcel_ID",
+        "Root_Length": "total_root_length",
+        "Dry_Weight": "root_dry_weight",
+        "Indole_Acetic_Acid": "Indol-3-essigsaeure",
         "Proline": "Prolin",
-        "Polyphenole": "Phenol",
-        "Glycin_Betain": "Glycin-Betain",
+        "Polyphenols": "Phenol",
+        "Glycine_Betaine": "Glycin-Betain",
+        "AMF_Colonization": "AMF_colonization",
+        "Abscisic_Acid": "Abscisinsaeure",
+        "Ascorbate_Peroxidase": "Ascorbat_Peroxidase",
+        "Aspargine": "Aspargin",
+        "Cytokenine": "Cytokinin",
+        "Hydrogen_Peroxid": "Wasserstoffperoxid",
+        "Total_Antioxidants": "Total_Antioxidantien",
+        "Salicylic_Acid": "Salizylsaeure",
+        "Jasmonic_Acid": "Jasmonsaeure",
+        "Gibberellic_Acid": "Gibberellinsaeure",
+        "Succinic_Acid": "Bernsteinsaeure",
+        "Aspargine": "Asparagin",
     },
     inplace=True,
 )
