@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from common import validate
 
-db_file_path = "Westerfeld_DB_V_1_10.xlsx"
+db_file_path = "Westerfeld_DB_V_1_18.xlsx"
 rd_file_path = "Bacteria_2015-2021.xlsx"
 miss_id_file_path = "Missing_identifiers_Bacteria.xlsx"
 diff_file_path = "Differences_Bacteria.xlsx"
@@ -20,7 +20,7 @@ sheets = pd.read_excel(
         "V1_0_BACTERIA",
         "V1_0_BIOPROJECT",
         "V1_0_HABITAT",
-        "V1_0_BENEFICIALS",
+        "V1_0_BENEFICIAL",
         "V1_0_KINGDOM",
         "V1_0_PHYLUM",
         "V1_0_CLASS",
@@ -33,7 +33,7 @@ sheets = pd.read_excel(
 df_bacteria = sheets["V1_0_BACTERIA"]
 df_bio_project = sheets["V1_0_BIOPROJECT"]
 df_habitat = sheets["V1_0_HABITAT"]
-df_beneficials = sheets["V1_0_BENEFICIALS"]
+df_beneficial = sheets["V1_0_BENEFICIAL"]
 df_kingdom = sheets["V1_0_KINGDOM"]
 df_phylum = sheets["V1_0_PHYLUM"]
 df_class = sheets["V1_0_CLASS"]
@@ -45,51 +45,67 @@ df_species = sheets["V1_0_SPECIES"]
 # Load raw source data
 df_raw = pd.read_excel(rd_file_path, sheet_name="RawData")
 
+# Rename columns
+df_beneficial.rename(columns={"Name_EN": "Beneficial"}, inplace=True)
+df_habitat.rename(columns={"Name_EN": "Habitat"}, inplace=True)
+df_bio_project.rename(columns={"Name": "BioProject"}, inplace=True)
+df_kingdom.rename(columns={"Name": "Kingdom"}, inplace=True)
+df_phylum.rename(columns={"Name": "Phylum"}, inplace=True)
+df_class.rename(columns={"Name": "Class"}, inplace=True)
+df_family.rename(columns={"Name": "Family"}, inplace=True)
+df_order.rename(columns={"Name": "Order"}, inplace=True)
+df_genus.rename(columns={"Name": "Genus"}, inplace=True)
+df_species.rename(columns={"Name": "Species"}, inplace=True)
+df_bacteria.rename(
+    columns={"Experimental_Year": "Year", "Plot_ID": "Parcel_ID"}, inplace=True
+)
+df_raw.rename(columns={"BioProject_ID": "BioProject"}, inplace=True)
+
 # Merge the individual data frames
 df_bacteria = pd.merge(
     df_bacteria,
-    df_bio_project[["BioProject_ID", "BioProject_Name"]],
+    df_bio_project[["BioProject_ID", "BioProject"]],
     on="BioProject_ID",
     how="left",
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_habitat[["Habitat_ID", "Habitat_en"]], on="Habitat_ID", how="left"
+    df_bacteria, df_habitat[["Habitat_ID", "Habitat"]], on="Habitat_ID", how="left"
 )
 df_bacteria = pd.merge(
     df_bacteria,
-    df_beneficials[["Beneficials_ID", "Beneficials_en"]],
-    on="Beneficials_ID",
+    df_beneficial[["Beneficial_ID", "Beneficial"]],
+    on="Beneficial_ID",
     how="left",
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_kingdom[["Kingdom_ID", "Kingdom_Name"]], on="Kingdom_ID", how="left"
+    df_bacteria, df_kingdom[["Kingdom_ID", "Kingdom"]], on="Kingdom_ID", how="left"
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_phylum[["Phylum_ID", "Phylum_Name"]], on="Phylum_ID", how="left"
+    df_bacteria, df_phylum[["Phylum_ID", "Phylum"]], on="Phylum_ID", how="left"
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_class[["Class_ID", "Class_Name"]], on="Class_ID", how="left"
+    df_bacteria, df_class[["Class_ID", "Class"]], on="Class_ID", how="left"
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_family[["Family_ID", "Family_Name"]], on="Family_ID", how="left"
+    df_bacteria, df_family[["Family_ID", "Family"]], on="Family_ID", how="left"
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_order[["Order_ID", "Order_Name"]], on="Order_ID", how="left"
+    df_bacteria, df_order[["Order_ID", "Order"]], on="Order_ID", how="left"
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_genus[["Genus_ID", "Genus_Name"]], on="Genus_ID", how="left"
+    df_bacteria, df_genus[["Genus_ID", "Genus"]], on="Genus_ID", how="left"
 )
 df_bacteria = pd.merge(
-    df_bacteria, df_species[["Species_ID", "Species_Name"]], on="Species_ID", how="left"
+    df_bacteria, df_species[["Species_ID", "Species"]], on="Species_ID", how="left"
 )
 
-# Remove and rename columns
+# Remove columns
 df_bacteria.drop(
     columns=[
         "Bacteria_ID",
         "BioProject_ID",
         "Habitat_ID",
-        "Beneficials_ID",
+        "Beneficial_ID",
         "Kingdom_ID",
         "Phylum_ID",
         "Class_ID",
@@ -100,23 +116,6 @@ df_bacteria.drop(
     ],
     inplace=True,
 )
-df_bacteria.rename(
-    columns={
-        "Experimental_Year": "Year",
-        "Plot_ID": "Parcel_ID",
-        "Habitat_en": "Habitat",
-        "Beneficials_en": "Beneficials",
-        "BioProject_Name": "BioProject_ID",
-        "Kingdom_Name": "Kingdom",
-        "Phylum_Name": "Phylum",
-        "Class_Name": "Class",
-        "Family_Name": "Family",
-        "Order_Name": "Order",
-        "Genus_Name": "Genus",
-        "Species_Name": "Species",
-    },
-    inplace=True,
-)
 
 df_raw.drop(columns=["Parcel", "Crop", "Sample_Name", "Internal_ID"], inplace=True)
 
@@ -125,16 +124,16 @@ df_raw["Identifier"] = (
     df_raw["Year"].astype(str)
     + df_raw["Parcel_ID"].astype(str)
     + df_raw["Habitat"].astype(str)
-    + df_raw["Beneficials"].astype(str)
-    + df_raw["BioProject_ID"].astype(str)
+    + df_raw["Beneficial"].astype(str)
+    + df_raw["BioProject"].astype(str)
     + df_raw["Seq_ID"].astype(str)
 )
 df_bacteria["Identifier"] = (
     df_bacteria["Year"].astype(str)
     + df_bacteria["Parcel_ID"].astype(str)
     + df_bacteria["Habitat"].astype(str)
-    + df_bacteria["Beneficials"].astype(str)
-    + df_bacteria["BioProject_ID"].astype(str)
+    + df_bacteria["Beneficial"].astype(str)
+    + df_bacteria["BioProject"].astype(str)
     + df_bacteria["Seq_ID"].astype(str)
 )
 

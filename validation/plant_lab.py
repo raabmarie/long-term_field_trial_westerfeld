@@ -2,11 +2,11 @@ import os
 import pandas as pd
 from common import validate
 
-db_file_path = "Westerfeld_DB_V_1_13.xlsx"
+db_file_path = "Westerfeld_DB_V_1_18.xlsx"
 rd_file_path = "Plant_Lab_Results_2019-2021.xlsx"
 miss_id_file_path = "Missing_identifiers_PlantLab.xlsx"
 diff_file_path = "Differences_PlantLab.xlsx"
-
+ 
 if os.path.exists(diff_file_path):
     os.remove(diff_file_path)
 
@@ -19,43 +19,39 @@ sheets = pd.read_excel(
     sheet_name=[
         "V1_0_PLANT_LAB",
         "V1_0_PLANT_SAMPLING",
-        "V1_0_BENEFICIALS",
+        "V1_0_BENEFICIAL",
     ],
 )
 df_plant_lab = sheets["V1_0_PLANT_LAB"]
 df_plant_sample = sheets["V1_0_PLANT_SAMPLING"]
-df_beneficials = sheets["V1_0_BENEFICIALS"]
+df_beneficial = sheets["V1_0_BENEFICIAL"]
 
 # Load raw source data
 df_raw = pd.read_excel(rd_file_path, sheet_name="RawData")
+
+# Rename columns 
+df_beneficial.rename(columns={"Name_EN": "Beneficials"}, inplace=True)
+df_plant_sample.rename(columns={"Experimental_Year": "Year", "Plot_ID": "Parcel_ID"}, inplace=True)
 
 # Merge the individual data frames
 df_plant_lab = pd.merge(
     df_plant_lab,
     df_plant_sample[
-        ["Plant_Sampling_ID", "Experimental_Year", "Date", "Plot_ID", "Beneficials_ID"]
+        ["Plant_Sampling_ID", "Year", "Date", "Parcel_ID", "Beneficial_ID"]
     ],
     on="Plant_Sampling_ID",
     how="left",
 )
 df_plant_lab = pd.merge(
     df_plant_lab,
-    df_beneficials[["Beneficials_ID", "Beneficials_en"]],
-    on="Beneficials_ID",
+    df_beneficial[["Beneficial_ID", "Beneficials"]],
+    on="Beneficial_ID",
     how="left",
 )
 
-# Remove and rename columns
+# Remove columns
 df_plant_lab.drop(
-    columns=["Plant_Lab_ID", "Plant_Sampling_ID", "Beneficials_ID"], inplace=True
-)
-df_plant_lab.rename(
-    columns={
-        "Experimental_Year": "Year",
-        "Plot_ID": "Parcel_ID",
-        "Beneficials_en": "Beneficials",
-    },
-    inplace=True,
+    columns=["Plant_Lab_ID", "Plant_Sampling_ID", "Beneficial_ID"], inplace=True
 )
 
 df_raw.drop(
