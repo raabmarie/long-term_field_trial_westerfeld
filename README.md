@@ -56,6 +56,8 @@ There are (TODO: specify number) examples.
 
 ### Printing shapes
 
+Run `python3 examples/shapes.py`.
+
 This example prints out the data record type and shape (the number of observations and number of features) for
 each individual data file of the data set. First, it prints out LaTeX code for typesetting a LaTeX table. This result
 can be seen in the paper. And second, it prints out a Markdown table which looks like the following:
@@ -102,10 +104,6 @@ can be seen in the paper. And second, it prints out a Markdown table which looks
 | Microbe communities | FAMILY                     |            1218 |           3 |
 | Microbe communities | GENUS                      |            3025 |           3 |
 | Microbe communities | SPECIES                    |            6564 |           3 |)
-
-```
-python3 examples/shapes.py
-```
 
 ### TODO
 
