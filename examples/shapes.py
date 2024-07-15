@@ -82,9 +82,5 @@ data["File"] = names
 data["#Observations"] = observations
 data["#Features"] = features
 df = pd.DataFrame(data)
-latex_str = df.to_latex(index=False)
-latex_str = latex_str.replace("\\toprule\n", "")
-latex_str = latex_str.replace("midrule", "hline")
-latex_str = latex_str.replace("\\bottomrule\n", "")
-print(latex_str)
+print(df.to_latex(index=False))
 print(df.to_markdown(index=False))
