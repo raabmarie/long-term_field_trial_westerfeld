@@ -63,14 +63,28 @@ mapping = {
     "SPECIES": "Microbe communities",
 }
 
-# Output LaTeX code for typesetting a LaTeX table
-print("\\begin{tabular}{l|l|r|r}")
-print("Data record type & File & #Observations & #Features\\\\")
-print("\\hline")
+# Output LaTeX and markdown codes for typesetting a table
+data = {}
+categories = []
+names = []
+observations = []
+features = []
 for name in sheet_names:
     df = df_dict[name]
     name = name[5:]
-    cat = mapping[name]
-    name = name.replace("_", "\_")
-    print(f"{cat} & {name} & {df.shape[0]} & {df.shape[1]}\\\\")
-print("\\end{tabular}")
+    category = mapping[name]
+    categories.append(category)
+    names.append(name)
+    observations.append(df.shape[0])
+    features.append(df.shape[1])
+data["Data record type"] = categories
+data["File"] = names
+data["#Observations"] = observations
+data["#Features"] = features
+df = pd.DataFrame(data)
+latex_str = df.to_latex(index=False)
+latex_str = latex_str.replace("\\toprule\n", "")
+latex_str = latex_str.replace("midrule", "hline")
+latex_str = latex_str.replace("\\bottomrule\n", "")
+print(latex_str)
+print(df.to_markdown(index=False))
