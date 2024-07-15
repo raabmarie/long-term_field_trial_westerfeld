@@ -54,6 +54,19 @@ README.
 
 There are (TODO: specify number) examples.
 
+### Printing shapes
+
+This example prints out the data record type and shape (the number of observations and number of features) for
+each individual data file of the data set. First, it prints out LaTeX code for typesetting a LaTeX table. This result
+can be seen in the paper. And second, it prints out a Markdown table which looks like the following:
+TODO Add markdown output.
+
+```
+python3 examples/shapes.py
+```
+
+### TODO
+
 ```
 python3 examples/main.py
 ```
