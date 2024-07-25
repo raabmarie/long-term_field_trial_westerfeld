@@ -46,6 +46,7 @@ Alternatively, your favorite IDE might also handle the previous steps.
 ### Get the data set
 
 Get the data set from the [BonaRes Repository for Soil and Agricultural Research Data](https://www.bonares.de/research-data).
+(TODO: add specific link and/or DOI).
 
 Move the data set into the root of this source code repository, i.e., the data set should be located next to this
 README.
