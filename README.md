@@ -22,7 +22,7 @@ and unzip the repository as a file.
 
 ### Install Python dependencies
 
-An installation of Python 3 is required.
+An installation of [Python 3](https://www.python.org) is required.
 
 All Python dependencies for this repository are listed in the file [`requirements.txt`](requirements.txt).
 
