@@ -47,8 +47,7 @@ Alternatively, your favorite IDE might also handle the previous steps.
 
 Get the [data set](https://doi.org/10.20387/bonares-w669-gdsd) from the [BonaRes Repository for Soil and Agricultural Research Data](https://www.bonares.de/research-data).
 
-Move the data set into the root of this source code repository, i.e., the data set should be located next to this
-README.
+Move the data set into the root of this repository, i.e., the data set should be located next to this README.
 
 ## Examples
 
