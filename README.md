@@ -119,3 +119,7 @@ We have used these source code files to compare the raw data set with the final 
 transformation for database storage purposes. We only provide these source code files for documentation purposes and to
 ensure traceability and transparency. It is not possible to run these source code files on your end because we cannot
 supply the raw data.
+
+## License
+
+This work is licensed under the [MIT License](./LICENSE.txt).
