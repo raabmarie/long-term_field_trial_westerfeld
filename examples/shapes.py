@@ -1,59 +1,33 @@
-import os
 import pandas as pd
-import pickle
 
-db_file_path = "../Westerfeld.xlsx"
-pickle_file_path = "../Westerfeld.pickle"
-
-df_dict = {}
-
-# Speed up the data access after the first load by using a Pickle file
-if os.path.exists(pickle_file_path):
-    with open(pickle_file_path, "rb") as file:
-        df_dict = pickle.load(file)
-else:
-    df_dict = pd.read_excel(db_file_path, sheet_name=None)
-    with open(pickle_file_path, "wb") as file:
-        pickle.dump(df_dict, file, protocol=pickle.HIGHEST_PROTOCOL)
-
-sheet_names = df_dict.keys()
-print(sheet_names)
-
-# Hard code the mapping for retrieving the data record type
+# Hard code the mapping for retrieving the data category
 mapping = {
-    "REMARK": "Experimental data",
     "CROP": "Experimental data",
     "CROP_ROTATION": "Experimental data",
-    "PLANT_VARIETY": "Experimental data",
-    "SEED_STOCK": "Experimental data",
+    "EXPERIMENTAL_SETUP": "Experimental data",
     "FACTOR": "Experimental data",
     "FACTOR_1_LEVEL": "Experimental data",
     "FACTOR_2_LEVEL": "Experimental data",
-    "TREATMENT": "Experimental data",
+    "PLANT_VARIETY": "Experimental data",
     "PLOT": "Experimental data",
-    "EXPERIMENTAL_SETUP": "Experimental data",
-    "PLANT_PROTECTION_PRODUCT_T": "Field data",
-    "PLANT_PROTECTION_PRODUCT": "Field data",
-    "PLANT_PROTECTION": "Field data",
-    "SOWING": "Field data",
-    "TILLAGE_MEASURE": "Field data",
-    "TILLAGE": "Field data",
-    "FERTILIZER": "Field data",
+    "REMARK": "Experimental data",
+    "SEED_STOCK": "Experimental data",
+    "TREATMENT": "Experimental data",
     "FERTILIZATION": "Field data",
+    "FERTILIZER": "Field data",
     "HARVEST": "Field data",
+    "PLANT_PROTECTION": "Field data",
+    "PLANT_PROTECTION_PRODUCT": "Field data",
+    "PLANT_PROTECTION_PRODUCT_TYPE": "Field data",
+    "SOWING": "Field data",
+    "TILLAGE": "Field data",
+    "TILLAGE_MEASURE": "Field data",
     "YIELD": "Field data",
-    "SOIL_SAMPLING": "Soil data",
-    "SOIL_LAB": "Soil data",
-    "PLANT_SAMPLING": "Plant data",
-    "PLANT_LAB": "Plant data",
-    "ROOT": "Plant data",
     "FUNGI": "Microbe communities",
     "BACTERIA": "Microbe communities",
     "BIOPROJECT": "Microbe communities",
     "HABITAT": "Microbe communities",
     "BENEFICIAL": "Microbe communities",
-    "GENE_EXPRESSION_CATEGORY": "Plant data",
-    "GENE_EXPRESSION": "Plant data",
     "KINGDOM": "Microbe communities",
     "PHYLUM": "Microbe communities",
     "CLASS": "Microbe communities",
@@ -61,26 +35,37 @@ mapping = {
     "FAMILY": "Microbe communities",
     "GENUS": "Microbe communities",
     "SPECIES": "Microbe communities",
+    "SOIL_LAB": "Soil data",
+    "SOIL_SAMPLING": "Soil data",
+    "GENE_EXPRESSION": "Plant data",
+    "GENE_EXPRESSION_CATEGORY": "Plant data",
+    "PLANT_LAB": "Plant data",
+    "PLANT_SAMPLING": "Plant data",
+    "ROOT": "Plant data",
 }
 
-# Output LaTeX and markdown codes for typesetting a table
+FILE_NAME_PREFIX = "lte_westerfeld.V1_0_"
+data_table_names = list(mapping.keys())
+
+# Collect data table information
+# Finally, output LaTeX and markdown codes for typesetting a table containing this information
 data = {}
 categories = []
 names = []
 observations = []
 features = []
-for name in sheet_names:
-    df = df_dict[name]
-    name = name[5:]
+for name in data_table_names:
+    file_path = f"../{FILE_NAME_PREFIX}{name}.csv"
+    df = pd.read_csv(file_path)
     category = mapping[name]
     categories.append(category)
     names.append(name)
     observations.append(df.shape[0])
     features.append(df.shape[1])
-data["Data record type"] = categories
-data["File"] = names
+data["Data category"] = categories
+data["Data table"] = names
 data["#Observations"] = observations
 data["#Features"] = features
 df = pd.DataFrame(data)
-print(df.to_latex(index=False))
+print(df.to_latex(index=False).replace("#", "\#").replace("_", "\_"))
 print(df.to_markdown(index=False))
