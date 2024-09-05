@@ -59,8 +59,8 @@ There are (TODO: specify number) examples.
 
 Run `python3 examples/shapes.py`.
 
-This example prints out the data record type and shape (the number of observations and number of features) for
-each individual data file of the dataset. First, it prints out LaTeX code for typesetting a LaTeX table. This result
+This example prints out the data category and shape (the number of observations and number of features) for
+each individual data table of the dataset. First, it prints out LaTeX code for typesetting a LaTeX table. This result
 can be seen in the paper. And second, it prints out a Markdown table which looks like the following:
 
 | Data category       | Data table                    |   #Observations |   #Features |
