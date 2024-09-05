@@ -63,48 +63,48 @@ This example prints out the data record type and shape (the number of observatio
 each individual data file of the dataset. First, it prints out LaTeX code for typesetting a LaTeX table. This result
 can be seen in the paper. And second, it prints out a Markdown table which looks like the following:
 
-| Data record type    | File                       |   #Observations |   #Features |
-|:--------------------|:---------------------------|----------------:|------------:|
-| Experimental data   | REMARK                     |               9 |           3 |
-| Experimental data   | CROP                       |               6 |           5 |
-| Experimental data   | CROP_ROTATION              |             101 |           5 |
-| Experimental data   | PLANT_VARIETY              |              38 |           4 |
-| Experimental data   | SEED_STOCK                 |              38 |           2 |
-| Experimental data   | FACTOR                     |               2 |           3 |
-| Experimental data   | FACTOR_1_LEVEL             |               2 |           5 |
-| Experimental data   | FACTOR_2_LEVEL             |               2 |           5 |
-| Experimental data   | TREATMENT                  |               4 |           3 |
-| Experimental data   | PLOT                       |             240 |           8 |
-| Experimental data   | EXPERIMENTAL_SETUP         |            4800 |           7 |
-| Field data          | PLANT_PROTECTION_PRODUCT_T |               7 |           3 |
-| Field data          | PLANT_PROTECTION_PRODUCT   |             134 |           4 |
-| Field data          | PLANT_PROTECTION           |           27537 |           8 |
-| Field data          | SOWING                     |            4728 |           7 |
-| Field data          | TILLAGE_MEASURE            |               2 |           3 |
-| Field data          | TILLAGE                    |            4728 |           6 |
-| Field data          | FERTILIZER                 |               7 |           3 |
-| Field data          | FERTILIZATION              |           12527 |           8 |
-| Field data          | HARVEST                    |            4716 |           5 |
-| Field data          | YIELD                      |            4716 |           7 |
-| Soil data           | SOIL_SAMPLING              |            3866 |           7 |
-| Soil data           | SOIL_LAB                   |            3866 |          25 |
-| Plant data          | PLANT_SAMPLING             |             224 |           5 |
-| Plant data          | PLANT_LAB                  |             224 |          17 |
-| Plant data          | ROOT                       |             112 |          25 |
-| Microbe communities | FUNGI                      |          299966 |          18 |
-| Microbe communities | BACTERIA                   |          780840 |          17 |
-| Microbe communities | BIOPROJECT                 |               5 |           2 |
-| Microbe communities | HABITAT                    |               2 |           3 |
-| Microbe communities | BENEFICIAL                 |               2 |           3 |
-| Plant data          | GENE_EXPRESSION_CATEGORY   |               5 |           3 |
-| Plant data          | GENE_EXPRESSION            |            3520 |           8 |
-| Microbe communities | KINGDOM                    |               3 |           2 |
-| Microbe communities | PHYLUM                     |              91 |           3 |
-| Microbe communities | CLASS                      |             264 |           3 |
-| Microbe communities | ORDER                      |             629 |           3 |
-| Microbe communities | FAMILY                     |            1218 |           3 |
-| Microbe communities | GENUS                      |            3025 |           3 |
-| Microbe communities | SPECIES                    |            6564 |           3 |)
+| Data category       | Data table                    |   #Observations |   #Features |
+|:--------------------|:------------------------------|----------------:|------------:|
+| Experimental data   | CROP                          |               6 |           5 |
+| Experimental data   | CROP_ROTATION                 |             101 |           5 |
+| Experimental data   | EXPERIMENTAL_SETUP            |            4800 |           7 |
+| Experimental data   | FACTOR                        |               2 |           3 |
+| Experimental data   | FACTOR_1_LEVEL                |               2 |           5 |
+| Experimental data   | FACTOR_2_LEVEL                |               2 |           5 |
+| Experimental data   | PLANT_VARIETY                 |              38 |           4 |
+| Experimental data   | PLOT                          |             240 |           8 |
+| Experimental data   | REMARK                        |               9 |           3 |
+| Experimental data   | SEED_STOCK                    |              38 |           2 |
+| Experimental data   | TREATMENT                     |               4 |           3 |
+| Field data          | FERTILIZATION                 |           12527 |           8 |
+| Field data          | FERTILIZER                    |               7 |           3 |
+| Field data          | HARVEST                       |            4716 |           5 |
+| Field data          | PLANT_PROTECTION              |           27536 |           8 |
+| Field data          | PLANT_PROTECTION_PRODUCT      |             134 |           4 |
+| Field data          | PLANT_PROTECTION_PRODUCT_TYPE |               7 |           3 |
+| Field data          | SOWING                        |            4728 |           7 |
+| Field data          | TILLAGE                       |            4728 |           6 |
+| Field data          | TILLAGE_MEASURE               |               2 |           3 |
+| Field data          | YIELD                         |            4716 |           8 |
+| Microbe communities | FUNGI                         |          299966 |          18 |
+| Microbe communities | BACTERIA                      |          771361 |          18 |
+| Microbe communities | BIOPROJECT                    |              10 |           2 |
+| Microbe communities | HABITAT                       |               2 |           3 |
+| Microbe communities | BENEFICIAL                    |               2 |           3 |
+| Microbe communities | KINGDOM                       |               3 |           2 |
+| Microbe communities | PHYLUM                        |              91 |           3 |
+| Microbe communities | CLASS                         |             264 |           3 |
+| Microbe communities | ORDER                         |             629 |           3 |
+| Microbe communities | FAMILY                        |            1218 |           3 |
+| Microbe communities | GENUS                         |            3025 |           3 |
+| Microbe communities | SPECIES                       |            6564 |           3 |
+| Soil data           | SOIL_LAB                      |            3866 |          25 |
+| Soil data           | SOIL_SAMPLING                 |            3866 |           7 |
+| Plant data          | GENE_EXPRESSION               |            3520 |           8 |
+| Plant data          | GENE_EXPRESSION_CATEGORY      |               5 |           3 |
+| Plant data          | PLANT_LAB                     |             224 |          17 |
+| Plant data          | PLANT_SAMPLING                |             224 |           5 |
+| Plant data          | ROOT                          |             112 |          25 |
 
 ### TODO
 
