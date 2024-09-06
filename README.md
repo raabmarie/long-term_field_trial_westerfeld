@@ -1,6 +1,7 @@
 # Long-term field trial Westerfeld
 
 [![code style](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
+[![DOI](https://zenodo.org/badge/793402108.svg)](https://zenodo.org/doi/10.5281/zenodo.13709848)
 
 Accompanying repository for the data
 set ["Westerfeld: Long-term field trial on tillage and fertilization in crop rotation"](https://doi.org/10.20387/bonares-w669-gdsd)
