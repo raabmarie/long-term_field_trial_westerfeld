@@ -19,7 +19,7 @@ df_plant_lab = pd.merge(
     how="left",
 )
 
-# Rename column 'Name_EN' and drop foreign keys that are not longer needed
+# Rename column 'Name_EN' and drop foreign keys that are no longer needed
 df_plant_lab = df_plant_lab.rename(columns={"Name_EN": "Beneficial"})
 df_plant_lab = df_plant_lab.drop(columns=["Beneficial_ID", "Plant_Sampling_ID"])
 

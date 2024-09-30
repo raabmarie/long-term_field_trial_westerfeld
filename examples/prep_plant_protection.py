@@ -42,7 +42,7 @@ df_plant_protection = pd.merge(
     how="left",
 )
 
-# Drop foreign keys that are not longer needed
+# Drop foreign keys that are no longer needed
 df_plant_protection = df_plant_protection.drop(columns=["Plant_Protection_Product_ID"])
 
 # Add the experiment information to the data frame (Crop, Tillage, Fertilization)

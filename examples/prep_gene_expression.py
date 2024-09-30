@@ -28,7 +28,7 @@ df_gene_expression = pd.merge(
     how="left",
 )
 
-# Rename column 'Name_EN' and drop foreign keys that are not longer needed
+# Rename column 'Name_EN' and drop foreign keys that are no longer needed
 df_gene_expression = df_gene_expression.rename(
     columns={"Name_EN": "Gene_Expression_Category"}
 )

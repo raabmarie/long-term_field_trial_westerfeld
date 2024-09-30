@@ -19,7 +19,7 @@ df_soil_lab = pd.merge(
     how="left",
 )
 
-# Rename column 'Name_EN' and drop foreign keys that are not longer needed
+# Rename column 'Name_EN' and drop foreign keys that are no longer needed
 df_soil_lab = df_soil_lab.rename(columns={"Name_EN": "Beneficial"})
 df_soil_lab = df_soil_lab.drop(columns=["Beneficial_ID", "Soil_Sampling_ID"])
 

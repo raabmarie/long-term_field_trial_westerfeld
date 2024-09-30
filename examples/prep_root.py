@@ -10,7 +10,7 @@ df_root = pd.merge(
     df_root, df_beneficial[["Beneficial_ID", "Name_EN"]], on="Beneficial_ID", how="left"
 )
 
-# Rename column 'Name_EN' and drop foreign keys that are not longer needed
+# Rename column 'Name_EN' and drop foreign keys that are no longer needed
 df_root = df_root.rename(columns={"Name_EN": "Beneficial"})
 df_root = df_root.drop(columns=["Beneficial_ID"])
 

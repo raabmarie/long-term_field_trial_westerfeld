@@ -13,7 +13,7 @@ df_tillage = pd.merge(
     how="left",
 )
 
-# Rename column 'Name_EN' and drop foreign keys that are not longer needed
+# Rename column 'Name_EN' and drop foreign keys that are no longer needed
 df_tillage = df_tillage.rename(columns={"Name_EN": "Tillage_Measure"})
 df_tillage = df_tillage.drop(columns=["Tillage_Measure_ID"])
 
