@@ -1,5 +1,5 @@
 import pandas as pd
-from common import prep_table_experiment
+from common import prepare_table_experiment
 
 # Load data from CSV file
 df_soil_lab = pd.read_csv("lte_westerfeld.V1_0_SOIL_LAB.csv")
@@ -24,6 +24,6 @@ df_soil_lab = df_soil_lab.rename(columns={"Name_EN": "Beneficial"})
 df_soil_lab = df_soil_lab.drop(columns=["Beneficial_ID", "Soil_Sampling_ID"])
 
 # Add the experiment information to the data frame (Crop, Tillage, Fertilization)
-df_soil_lab = prep_table_experiment(df_soil_lab)
+df_soil_lab = prepare_table_experiment(df_soil_lab)
 
 print(df_soil_lab.columns)

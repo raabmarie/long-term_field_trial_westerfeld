@@ -1,5 +1,5 @@
 import pandas as pd
-from common import prep_table_experiment
+from common import prepare_table_experiment
 
 # Load data from CSV file
 df_root = pd.read_csv("lte_westerfeld.V1_0_ROOT.csv")
@@ -15,6 +15,6 @@ df_root = df_root.rename(columns={"Name_EN": "Beneficial"})
 df_root = df_root.drop(columns=["Beneficial_ID"])
 
 # Add the experiment information to the data frame (Crop, Tillage, Fertilization)
-df_root = prep_table_experiment(df_root)
+df_root = prepare_table_experiment(df_root)
 
 print(df_root.columns)

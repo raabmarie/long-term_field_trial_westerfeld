@@ -1,5 +1,5 @@
 import pandas as pd
-from common import prep_table_experiment
+from common import prepare_table_experiment
 
 # Load data from CSV file
 df_plant_lab = pd.read_csv("lte_westerfeld.V1_0_PLANT_LAB.csv")
@@ -25,6 +25,6 @@ df_plant_lab = df_plant_lab.drop(columns=["Beneficial_ID", "Plant_Sampling_ID"])
 
 
 # Add the experiment information to the data frame (Crop, Tillage, Fertilization)
-df_plant_lab = prep_table_experiment(df_plant_lab)
+df_plant_lab = prepare_table_experiment(df_plant_lab)
 
 print(df_plant_lab.columns)

@@ -1,6 +1,6 @@
 import pandas as pd
-from common import prep_table_experiment
-from common import prep_table_taxonomy
+from common import prepare_table_experiment
+from common import prepare_table_taxonomy
 
 # Load data from CSV file
 df_beneficial = pd.read_csv("lte_westerfeld.V1_0_BENEFICIAL.csv")
@@ -43,9 +43,9 @@ df_fungi = df_fungi.rename(columns={"Name": "BioProject"})
 df_fungi = df_fungi.drop(columns=["Beneficial_ID", "Habitat_ID", "BioProject_ID"])
 
 # Add the experiment information to the data frame (Crop, Tillage, Fertilization)
-df_fungi = prep_table_experiment(df_fungi)
+df_fungi = prepare_table_experiment(df_fungi)
 
 # Add taxonomy to the data frame
-df_fungi = prep_table_taxonomy(df_fungi)
+df_fungi = prepare_table_taxonomy(df_fungi)
 
 print(df_fungi.columns)

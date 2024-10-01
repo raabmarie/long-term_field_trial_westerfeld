@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def prep_table_experiment(df):
+def prepare_table_experiment(df):
     # Load CSV files
     df_plot = pd.read_csv("lte_westerfeld.V1_0_PLOT.csv")
     df_experimental_setup = pd.read_csv("lte_westerfeld.V1_0_EXPERIMENTAL_SETUP.csv")
@@ -65,7 +65,7 @@ def prep_table_experiment(df):
     return df
 
 
-def prep_table_taxonomy(df):
+def prepare_table_taxonomy(df):
     # Load CSV files
     df_kingdom = pd.read_csv("lte_westerfeld.V1_0_KINGDOM.csv")
     df_phylum = pd.read_csv("lte_westerfeld.V1_0_PHYLUM.csv")

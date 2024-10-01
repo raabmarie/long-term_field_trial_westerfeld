@@ -1,5 +1,5 @@
 import pandas as pd
-from common import prep_table_experiment
+from common import prepare_table_experiment
 
 # Load data from CSV file
 df_gene_expression = pd.read_csv("lte_westerfeld.V1_0_GENE_EXPRESSION.csv")
@@ -37,6 +37,6 @@ df_gene_expression = df_gene_expression.drop(
 )
 
 # Add the experiment information to the data frame (Crop, Tillage, Fertilization)
-df_gene_expression = prep_table_experiment(df_gene_expression)
+df_gene_expression = prepare_table_experiment(df_gene_expression)
 
 print(df_gene_expression.columns)

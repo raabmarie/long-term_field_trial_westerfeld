@@ -1,6 +1,6 @@
 import pandas as pd
-from common import prep_table_experiment
-from common import prep_table_taxonomy
+from common import prepare_table_experiment
+from common import prepare_table_taxonomy
 
 # Load data from CSV file
 df_beneficial = pd.read_csv("lte_westerfeld.V1_0_BENEFICIAL.csv")
@@ -46,9 +46,9 @@ df_bacteria = df_bacteria.rename(columns={"Name": "BioProject"})
 df_bacteria = df_bacteria.drop(columns=["Beneficial_ID", "Habitat_ID", "BioProject_ID"])
 
 # Add the experiment information to the data frame (Crop, Tillage, Fertilization)
-df_bacteria = prep_table_experiment(df_bacteria)
+df_bacteria = prepare_table_experiment(df_bacteria)
 
 # Add taxonomy to the data frame
-df_bacteria = prep_table_taxonomy(df_bacteria)
+df_bacteria = prepare_table_taxonomy(df_bacteria)
 
 print(df_bacteria.columns)

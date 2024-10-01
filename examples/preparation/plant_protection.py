@@ -1,5 +1,5 @@
 import pandas as pd
-from common import prep_table_experiment
+from common import prepare_table_experiment
 
 # Load data from CSV file
 df_plant_protection_product_type = pd.read_csv(
@@ -46,6 +46,6 @@ df_plant_protection = pd.merge(
 df_plant_protection = df_plant_protection.drop(columns=["Plant_Protection_Product_ID"])
 
 # Add the experiment information to the data frame (Crop, Tillage, Fertilization)
-df_plant_protection = prep_table_experiment(df_plant_protection)
+df_plant_protection = prepare_table_experiment(df_plant_protection)
 
 print(df_plant_protection.columns)
