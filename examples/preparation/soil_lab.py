@@ -26,4 +26,4 @@ df_soil_lab = df_soil_lab.drop(columns=["Beneficial_ID", "Soil_Sampling_ID"])
 # Add experiment information
 df_soil_lab = prepare_table_experiment(df_soil_lab)
 
-print(df_soil_lab.columns)
+print(list(df_soil_lab.columns))

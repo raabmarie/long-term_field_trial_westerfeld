@@ -26,4 +26,4 @@ df_plant_lab = df_plant_lab.drop(columns=["Beneficial_ID", "Plant_Sampling_ID"])
 # Add experiment information
 df_plant_lab = prepare_table_experiment(df_plant_lab)
 
-print(df_plant_lab.columns)
+print(list(df_plant_lab.columns))

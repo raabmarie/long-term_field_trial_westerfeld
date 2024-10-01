@@ -17,4 +17,4 @@ df_root = df_root.drop(columns=["Beneficial_ID"])
 # Add experiment information
 df_root = prepare_table_experiment(df_root)
 
-print(df_root.columns)
+print(list(df_root.columns))

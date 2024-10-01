@@ -39,4 +39,4 @@ df_fungi = prepare_table_experiment(df_fungi)
 # Add taxonomy information
 df_fungi = prepare_table_taxonomy(df_fungi)
 
-print(df_fungi.columns)
+print(list(df_fungi.columns))

@@ -20,4 +20,4 @@ df_tillage = df_tillage.drop(columns=["Tillage_Measure_ID"])
 # Add experiment information
 df_tillage = prepare_table_experiment(df_tillage)
 
-print(df_tillage.columns)
+print(list(df_tillage.columns))

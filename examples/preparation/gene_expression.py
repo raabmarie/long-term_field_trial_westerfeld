@@ -36,4 +36,4 @@ df_gene_expression = df_gene_expression.drop(
 # Add experiment information
 df_gene_expression = prepare_table_experiment(df_gene_expression)
 
-print(df_gene_expression.columns)
+print(list(df_gene_expression.columns))

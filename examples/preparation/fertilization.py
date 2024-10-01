@@ -20,4 +20,4 @@ df_fertilization = df_fertilization.drop(columns=["Fertilizer_ID"])
 # Add experiment information
 df_fertilization = prepare_table_experiment(df_fertilization)
 
-print(df_fertilization.columns)
+print(list(df_fertilization.columns))
