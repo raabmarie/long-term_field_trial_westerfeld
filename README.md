@@ -63,7 +63,15 @@ The dataset is made up of different data tables for data normalization purposes.
 You probably want to merge data from different data tables for further analyses.
 We provide common examples in `examples/preparation`.
 
-For example, run `python3 examples/preparation/fungi.py`.
+For example, run `python3 examples/preparation/tillage.py` which would create the following table (only the first five rows are shown):
+
+|    |   Tillage_ID |   Experimental_Year | Date                |   Plot_ID |   Depth | Tillage_Measure   | Crop         | Tillage    | Fertilization   |
+|---:|-------------:|--------------------:|:--------------------|----------:|--------:|:------------------|:-------------|:-----------|:----------------|
+|  0 |            1 |                2004 | 2003-10-10T00:00:00 |         1 |      10 | Cultivator        | Winter wheat | Cultivator | extensive       |
+|  1 |            2 |                2004 | 2003-10-10T00:00:00 |         2 |      10 | Cultivator        | Winter wheat | Cultivator | intensive       |
+|  2 |            3 |                2004 | 2003-10-09T00:00:00 |         3 |      30 | Plough            | Winter wheat | Plough     | intensive       |
+|  3 |            4 |                2004 | 2003-10-09T00:00:00 |         4 |      30 | Plough            | Winter wheat | Plough     | extensive       |
+|  4 |            5 |                2004 | 2003-10-10T00:00:00 |         5 |      10 | Cultivator        | Winter wheat | Cultivator | extensive       |
 
 ### Printing shapes
 
