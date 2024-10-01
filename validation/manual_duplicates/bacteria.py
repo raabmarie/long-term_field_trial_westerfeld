@@ -3,7 +3,7 @@ import pandas as pd
 
 db_file_path = "Westerfeld_DB_V_1_21.xlsx"
 
-# Load transformed / normalized data into data frames
+# Load transformed / normalized data
 sheets = pd.read_excel(
     db_file_path,
     sheet_name=[
@@ -36,12 +36,8 @@ df_family = sheets["V1_0_FAMILY"]
 df_order = sheets["V1_0_ORDER"]
 df_genus = sheets["V1_0_GENUS"]
 df_species = sheets["V1_0_SPECIES"]
-
-# --> DFs to get the Crop
 df_experimental_setup = sheets["V1_0_EXPERIMENTAL_SETUP"]
 df_crop = sheets["V1_0_CROP"]
-
-# --> DFs to get the sample name for all Fungi (e.g. RH-CT-INT-BMs)
 df_treatment = sheets["V1_0_TREATMENT"]
 df_factor1 = sheets["V1_0_FACTOR_1_LEVEL"]
 df_factor2 = sheets["V1_0_FACTOR_2_LEVEL"]
@@ -61,35 +57,31 @@ df_crop = df_crop.rename(columns={"Name_EN": "Crop"})
 df_factor1 = df_factor1.rename(columns={"Name_EN": "Factor1"})
 df_factor2 = df_factor2.rename(columns={"Name_EN": "Factor2"})
 
-# Prep the Experimental_Setup to join the Crop
+# Prepare the experimental setup
 df_experimental_setup = pd.merge(
     df_experimental_setup,
     df_crop[["Crop_ID", "Crop"]],
     on="Crop_ID",
     how="left",
 )
-
 df_experimental_setup = pd.merge(
     df_experimental_setup,
     df_treatment[["Treatment_ID", "Factor_1_Level_ID", "Factor_2_Level_ID"]],
     on="Treatment_ID",
     how="left",
 )
-
 df_experimental_setup = pd.merge(
     df_experimental_setup,
     df_factor1[["Factor_1_Level_ID", "Factor1"]],
     on="Factor_1_Level_ID",
     how="left",
 )
-
 df_experimental_setup = pd.merge(
     df_experimental_setup,
     df_factor2[["Factor_2_Level_ID", "Factor2"]],
     on="Factor_2_Level_ID",
     how="left",
 )
-
 df_experimental_setup.drop(
     columns=[
         "Experimental_Setup_ID",
@@ -102,7 +94,6 @@ df_experimental_setup.drop(
     ],
     inplace=True,
 )
-
 
 # Merge the individual data frames
 df_bacteria = pd.merge(
@@ -141,7 +132,6 @@ df_bacteria = pd.merge(
 df_bacteria = pd.merge(
     df_bacteria, df_species[["Species_ID", "Species"]], on="Species_ID", how="left"
 )
-
 df_bacteria = pd.merge(
     df_bacteria,
     df_experimental_setup[
@@ -151,8 +141,7 @@ df_bacteria = pd.merge(
     how="left",
 )
 
-
-# Remove columns
+# Remove identifier columns
 df_bacteria.drop(
     columns=[
         "BioProject_ID",
@@ -169,9 +158,8 @@ df_bacteria.drop(
     inplace=True,
 )
 
-# Change sort order of the columns
-
-new_order_bacteria = [
+# Change order of the columns
+new_column_order = [
     "Experimental_Year",
     "Date",
     "Plot_ID",
@@ -193,9 +181,9 @@ new_order_bacteria = [
     "Genus",
     "Species",
 ]
-df_bacteria = df_bacteria[new_order_bacteria]
+df_bacteria = df_bacteria[new_column_order]
 
-# Check the df_fungi for duplicates
+# Check for duplicates
 df_bacteria_duplicates = df_bacteria[df_bacteria.duplicated()]
 
 if df_bacteria_duplicates.empty:
@@ -206,7 +194,5 @@ else:
         "Duplicates_Bacteria.csv", sep=";", decimal=",", index=False
     )
 
-
 # Export data as CSV
 df_bacteria.to_csv("Bacteria.csv", sep=";", decimal=",", index=False)
-print("done")

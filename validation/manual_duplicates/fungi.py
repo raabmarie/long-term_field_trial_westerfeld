@@ -36,16 +36,11 @@ df_family = sheets["V1_0_FAMILY"]
 df_order = sheets["V1_0_ORDER"]
 df_genus = sheets["V1_0_GENUS"]
 df_species = sheets["V1_0_SPECIES"]
-
-# --> DFs to get the Crop
 df_experimental_setup = sheets["V1_0_EXPERIMENTAL_SETUP"]
 df_crop = sheets["V1_0_CROP"]
-
-# --> DFs to get the sample name for all Fungi (e.g. RH-CT-INT-BMs)
 df_treatment = sheets["V1_0_TREATMENT"]
 df_factor1 = sheets["V1_0_FACTOR_1_LEVEL"]
 df_factor2 = sheets["V1_0_FACTOR_2_LEVEL"]
-
 
 # Rename columns
 df_beneficial.rename(columns={"Name_EN": "Beneficials"}, inplace=True)
@@ -62,29 +57,25 @@ df_crop = df_crop.rename(columns={"Name_EN": "Crop"})
 df_factor1 = df_factor1.rename(columns={"Name_EN": "Factor1"})
 df_factor2 = df_factor2.rename(columns={"Name_EN": "Factor2"})
 
-
-# Prep the Experimental_Setup to join the Crop
+# Prep the experimental setup
 df_experimental_setup = pd.merge(
     df_experimental_setup,
     df_crop[["Crop_ID", "Crop"]],
     on="Crop_ID",
     how="left",
 )
-
 df_experimental_setup = pd.merge(
     df_experimental_setup,
     df_treatment[["Treatment_ID", "Factor_1_Level_ID", "Factor_2_Level_ID"]],
     on="Treatment_ID",
     how="left",
 )
-
 df_experimental_setup = pd.merge(
     df_experimental_setup,
     df_factor1[["Factor_1_Level_ID", "Factor1"]],
     on="Factor_1_Level_ID",
     how="left",
 )
-
 df_experimental_setup = pd.merge(
     df_experimental_setup,
     df_factor2[["Factor_2_Level_ID", "Factor2"]],
@@ -92,6 +83,7 @@ df_experimental_setup = pd.merge(
     how="left",
 )
 
+# Drop identifier columns
 df_experimental_setup.drop(
     columns=[
         "Experimental_Setup_ID",
@@ -142,7 +134,6 @@ df_fungi = pd.merge(
 df_fungi = pd.merge(
     df_fungi, df_species[["Species_ID", "Species"]], on="Species_ID", how="left"
 )
-
 df_fungi = pd.merge(
     df_fungi,
     df_experimental_setup[
@@ -152,8 +143,7 @@ df_fungi = pd.merge(
     how="left",
 )
 
-
-# Remove columns
+# Remove identifier columns
 df_fungi.drop(
     columns=[
         "Fungi_ID",
@@ -171,9 +161,8 @@ df_fungi.drop(
     inplace=True,
 )
 
-# Change sort order of the columns
-
-new_order_fungi = [
+# Change order of the columns
+new_column_order = [
     "Experimental_Year",
     "Date",
     "Plot_ID",
@@ -195,9 +184,9 @@ new_order_fungi = [
     "Genus",
     "Species",
 ]
-df_fungi = df_fungi[new_order_fungi]
+df_fungi = df_fungi[new_column_order]
 
-# Check the df_fungi for duplicates
+# Check for duplicates
 df_fungi_duplicates = df_fungi[df_fungi.duplicated()]
 
 if df_fungi_duplicates.empty:
@@ -208,7 +197,5 @@ else:
         "Duplicates_Fungi.csv", sep=";", decimal=",", index=False
     )
 
-
 # Export data as CSV
 df_fungi.to_csv("Fungi.csv", sep=";", decimal=",", index=False)
-print("done")
