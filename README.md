@@ -63,15 +63,15 @@ The dataset is made up of different data tables for data normalization purposes.
 You probably want to merge data from different data tables for further analyses.
 We provide common examples in `examples/preparation`.
 
-For example, run `python3 examples/preparation/tillage.py` which would create the following table (only the first five rows are shown):
+For example, run `python3 examples/preparation/plant_protection.py` which would create the following table (only the first five rows are shown):
 
-|    |   Tillage_ID |   Experimental_Year | Date                |   Plot_ID |   Depth | Tillage_Measure   | Crop         | Tillage    | Fertilization   |
-|---:|-------------:|--------------------:|:--------------------|----------:|--------:|:------------------|:-------------|:-----------|:----------------|
-|  0 |            1 |                2004 | 2003-10-10T00:00:00 |         1 |      10 | Cultivator        | Winter wheat | Cultivator | extensive       |
-|  1 |            2 |                2004 | 2003-10-10T00:00:00 |         2 |      10 | Cultivator        | Winter wheat | Cultivator | intensive       |
-|  2 |            3 |                2004 | 2003-10-09T00:00:00 |         3 |      30 | Plough            | Winter wheat | Plough     | intensive       |
-|  3 |            4 |                2004 | 2003-10-09T00:00:00 |         4 |      30 | Plough            | Winter wheat | Plough     | extensive       |
-|  4 |            5 |                2004 | 2003-10-10T00:00:00 |         5 |      10 | Cultivator        | Winter wheat | Cultivator | extensive       |
+|    |   Plant_Protection_ID |   Experimental_Year | Date                |   Plot_ID |   Quantity_Liquid |   Quantity_Solid | Plant_Protection_Product   | Plant_Protection_Product_Type   | Crop         | Tillage    | Fertilization   |
+|---:|----------------------:|--------------------:|:--------------------|----------:|------------------:|-----------------:|:---------------------------|:--------------------------------|:-------------|:-----------|:----------------|
+|  0 |                     1 |                2004 | 2004-03-30T00:00:00 |         1 |              0.25 |              nan | Lotus                      | Herbicide                       | Winter wheat | Cultivator | extensive       |
+|  1 |                     2 |                2004 | 2004-04-20T00:00:00 |         1 |              1    |              nan | CCC                        | Growth_regulator                | Winter wheat | Cultivator | extensive       |
+|  2 |                     3 |                2004 | 2004-03-30T00:00:00 |         1 |              2.5  |              nan | Basagran_DP                | Herbicide                       | Winter wheat | Cultivator | extensive       |
+|  3 |                     4 |                2004 | 2004-06-02T00:00:00 |         2 |              1.2  |              nan | Opus_Top                   | Fungicide                       | Winter wheat | Cultivator | intensive       |
+|  4 |                     5 |                2004 | 2004-03-30T00:00:00 |         2 |              0.25 |              nan | Lotus                      | Herbicide                       | Winter wheat | Cultivator | intensive       |
 
 ### Printing shapes
 
