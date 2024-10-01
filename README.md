@@ -57,7 +57,7 @@ Please note that this is necessary only to run the examples from this repository
 
 ## Examples
 
-We provide some examples.
+We provide some examples for the actual use of the dataset. These are merely the first steps for subsequent analyses.
 
 ### Prepare tables from separated information
 
