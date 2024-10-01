@@ -50,7 +50,7 @@ Alternatively, your favorite IDE might also handle the previous steps.
 
 Get the [dataset](https://doi.org/10.20387/bonares-w669-gdsd) from the [BonaRes Repository for Soil and Agricultural Research Data](https://www.bonares.de/research-data).
 
-Move the dataset into the root of this repository, i.e., the dataset should be located next to this README.
+Move the dataset into the root directory of this repository, i.e., the dataset should be located next to this README.
 Please note that this is necessary only to run the examples from the repository without any modifications.
 
 ## Examples
@@ -61,7 +61,7 @@ We provide some examples.
 
 The dataset is made up of different data tables for data normalization purposes.
 You probably want to merge data from different data tables for further analyses.
-We provide common examples in `examples/preparation`.
+We provide some common examples for this in the directory `examples/preparation`.
 
 For example, run `python3 examples/preparation/plant_protection.py` which would create the following table (only the first five rows are shown):
 
