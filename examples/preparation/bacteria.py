@@ -6,8 +6,8 @@ from common import prepare_table_taxonomy
 df_beneficial = pd.read_csv(f"../../lte_westerfeld.V1_0_BENEFICIAL.csv")
 df_bioproject = pd.read_csv(f"../../lte_westerfeld.V1_0_BIOPROJECT.csv")
 df_habitat = pd.read_csv(f"../../lte_westerfeld.V1_0_HABITAT.csv")
-dtype_dict = {"Seq_ID": "str", "ACC_Num": "str", "OTU_ID": "str"}
-df_bacteria = pd.read_csv(f"../../lte_westerfeld.V1_0_BACTERIA.csv", dtype=dtype_dict)
+dtypes = {"Seq_ID": "str", "ACC_Num": "str", "OTU_ID": "str"}
+df_bacteria = pd.read_csv(f"../../lte_westerfeld.V1_0_BACTERIA.csv", dtype=dtypes)
 
 # Add BENEFICIAL information
 df_bacteria = pd.merge(
