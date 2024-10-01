@@ -66,7 +66,18 @@ The dataset is made up of different data tables for data normalization purposes.
 You probably want to merge data from different data tables for further analyses.
 We provide some common examples for this in the directory [`examples/preparation`](examples/preparation).
 
-For example, run `python3 examples/preparation/plant_protection.py` which would create the following table (only the
+For example, run `python3 examples/preparation/bacteria.py` which would create a table that looks similar to the
+folloiwng one (only the last five rows and a subset of all columns are shown):
+
+|        |   Plot_ID |   Value | OTU_ID   | ... | Kingdom   | Phylum           | Class                 | Order             | Family             | Genus           | Species            |
+|-------:|----------:|--------:|:---------|-----|:----------|:-----------------|:----------------------|:------------------|:-------------------|:----------------|:-------------------|
+| 771356 |       224 |       2 | Otu1372  | ... | Bacteria  | Bacillota        | Bacilli               | Bacillales        | Bacillaceae        | Virgibacillus   | Virgibacillus_sp   |
+| 771357 |       224 |       3 | Otu1357  | ... | Bacteria  | Actinomycetota   | Actinomycetes         | Micromonosporales | Micromonosporaceae | Virgisporangium | Virgisporangium_sp |
+| 771358 |       224 |       2 | Otu1024  | ... | Bacteria  | Bacteroidota     | Flavobacteriia        | Flavobacteriales  | Cryomorphaceae     | Wandonia        | Wandonia_sp        |
+| 771359 |       224 |       1 | Otu2772  | ... | Bacteria  | Bacteroidota     | Flavobacteriia        | Flavobacteriales  | Cryomorphaceae     | Wandonia        | Wandonia_sp        |
+| 771360 |       224 |       5 | Otu520   | ... | Bacteria  | Campylobacterota | Epsilonproteobacteria | Campylobacterales | Helicobacteraceae  | Wolinella       | Wolinella_sp       |
+
+Or, for example, run `python3 examples/preparation/plant_protection.py` which would create the following table (only the
 first five rows are shown):
 
 |    |   Plant_Protection_ID |   Experimental_Year | Date                |   Plot_ID |   Quantity_Liquid |   Quantity_Solid | Plant_Protection_Product   | Plant_Protection_Product_Type   | Crop         | Tillage    | Fertilization   |
