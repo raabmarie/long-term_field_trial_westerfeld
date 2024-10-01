@@ -77,6 +77,13 @@ first five rows are shown):
 |  3 |                     4 |                2004 | 2004-06-02T00:00:00 |         2 |              1.2  |              nan | Opus_Top                   | Fungicide                       | Winter wheat | Cultivator | intensive       |
 |  4 |                     5 |                2004 | 2004-03-30T00:00:00 |         2 |              0.25 |              nan | Lotus                      | Herbicide                       | Winter wheat | Cultivator | intensive       |
 
+### Data records per year
+
+Run `python3 examples/misc/data_records_per_year.py`.
+
+This example will create the following plot that shows the number of data records per year:
+![Bar chart showing the number of data records per year](examples/misc/data_records_per_year.jpg)
+
 ### Printing shapes
 
 Run `python3 examples/misc/shapes.py`.
