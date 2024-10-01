@@ -51,14 +51,23 @@ Alternatively, your favorite IDE might also handle the previous steps.
 Get the [dataset](https://doi.org/10.20387/bonares-w669-gdsd) from the [BonaRes Repository for Soil and Agricultural Research Data](https://www.bonares.de/research-data).
 
 Move the dataset into the root of this repository, i.e., the dataset should be located next to this README.
+Please note that this is necessary only to run the examples from the repository without any modifications.
 
 ## Examples
 
-There are (TODO: specify number) examples.
+We provide some examples.
+
+### Prepare tables from separated information
+
+The dataset is made up of different data tables for data normalization purposes.
+You probably want to merge data from different data tables for further analyses.
+We provide common examples in `examples/preparation`.
+
+For example, run `python3 examples/preparation/fungi.py`.
 
 ### Printing shapes
 
-Run `python3 examples/shapes.py`.
+Run `python3 examples/misc/shapes.py`.
 
 This example prints out the data category and shape (the number of observations and number of features) for
 each individual data table of the dataset. First, it prints out LaTeX code for typesetting a LaTeX table. This result
@@ -106,12 +115,6 @@ can be seen in the paper. And second, it prints out a Markdown table which looks
 | Plant data          | PLANT_LAB                     |             224 |          17 |
 | Plant data          | PLANT_SAMPLING                |             224 |           5 |
 | Plant data          | ROOT                          |             112 |          25 |
-
-### TODO
-
-```
-python3 examples/main.py
-```
 
 ## Validation
 
