@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def prep_table_experiment(df):
-    # load CSV files
+    # Load CSV files
     df_plot = pd.read_csv("lte_westerfeld.V1_0_PLOT.csv")
     df_experimental_setup = pd.read_csv("lte_westerfeld.V1_0_EXPERIMENTAL_SETUP.csv")
     df_crop = pd.read_csv("lte_westerfeld.V1_0_CROP.csv")
@@ -10,14 +10,14 @@ def prep_table_experiment(df):
     df_factor_1_level = pd.read_csv("lte_westerfeld.V1_0_FACTOR_1_LEVEL.csv")
     df_factor_2_level = pd.read_csv("lte_westerfeld.V1_0_FACTOR_2_LEVEL.csv")
 
-    # check if Crop_ID is already available
+    # Check if Crop_ID is already available
     if "Crop_ID" in df.columns:
-        # If Yes, join table PLOT for Treatment_ID
+        # If yes, join table PLOT by Treatment_ID
         df = pd.merge(
             df, df_plot[["Plot_ID", "Treatment_ID"]], on="Plot_ID", how="left"
         )
     else:
-        # If No, join table EXPERIMENTAL_SETUP for Crop_ID and Treatment_ID
+        # If no, join table EXPERIMENTAL_SETUP by Crop_ID and Treatment_ID
         df = pd.merge(
             df,
             df_experimental_setup[
@@ -27,13 +27,11 @@ def prep_table_experiment(df):
             how="left",
         )
 
-    # Add Crop to the data frame
+    # Add CROP information
     df = pd.merge(df, df_crop[["Crop_ID", "Name_EN"]], on="Crop_ID", how="left")
-
-    # Rename column 'Name_EN' in 'Crop'
     df = df.rename(columns={"Name_EN": "Crop"})
 
-    # Join table TREATEMENT for 'Factor_1_Level_ID' and 'Factor_2_Level_ID'
+    # Add TREATEMENT information for 'Factor_1_Level_ID' and 'Factor_2_Level_ID'
     df = pd.merge(
         df,
         df_treatment[["Treatment_ID", "Factor_1_Level_ID", "Factor_2_Level_ID"]],
@@ -41,29 +39,25 @@ def prep_table_experiment(df):
         how="left",
     )
 
-    # Join table FACTOR_1_LEVEL for Tillage
+    # Add FACTOR_1_LEVEL information for Tillage
     df = pd.merge(
         df,
         df_factor_1_level[["Factor_1_Level_ID", "Name_EN"]],
         on="Factor_1_Level_ID",
         how="left",
     )
-
-    # Rename column 'Name_EN' in 'Tillage'
     df = df.rename(columns={"Name_EN": "Tillage"})
 
-    # Join table FACTOR_2_LEVEL for Fertilization
+    # Add FACTOR_2_LEVEL information for Fertilization
     df = pd.merge(
         df,
         df_factor_2_level[["Factor_2_Level_ID", "Name_EN"]],
         on="Factor_2_Level_ID",
         how="left",
     )
-
-    # Rename column 'Name_EN' in 'Fertilization'
     df = df.rename(columns={"Name_EN": "Fertilization"})
 
-    # Drop merged columns
+    # Optionally, drop merged identifier columns
     df = df.drop(
         columns=["Factor_2_Level_ID", "Factor_1_Level_ID", "Treatment_ID", "Crop_ID"]
     )
@@ -72,7 +66,7 @@ def prep_table_experiment(df):
 
 
 def prep_table_taxonomy(df):
-    # load CSV files
+    # Load CSV files
     df_kingdom = pd.read_csv("lte_westerfeld.V1_0_KINGDOM.csv")
     df_phylum = pd.read_csv("lte_westerfeld.V1_0_PHYLUM.csv")
     df_class = pd.read_csv("lte_westerfeld.V1_0_CLASS.csv")
@@ -81,49 +75,35 @@ def prep_table_taxonomy(df):
     df_genus = pd.read_csv("lte_westerfeld.V1_0_GENUS.csv")
     df_species = pd.read_csv("lte_westerfeld.V1_0_SPECIES.csv")
 
-    # Add KINGDOM
+    # Add KINGDOM information
     df = pd.merge(df, df_kingdom[["Kingdom_ID", "Name"]], on="Kingdom_ID", how="left")
-
-    # Rename column 'Name' in 'Kingdom'
     df = df.rename(columns={"Name": "Kingdom"})
 
-    # Add PHYLUM
+    # Add PHYLUM information
     df = pd.merge(df, df_phylum[["Phylum_ID", "Name"]], on="Phylum_ID", how="left")
-
-    # Rename column 'Name' in 'Phylum'
     df = df.rename(columns={"Name": "Phylum"})
 
-    # Add CLASS
+    # Add CLASS information
     df = pd.merge(df, df_class[["Class_ID", "Name"]], on="Class_ID", how="left")
-
-    # Rename column 'Name' in 'Class'
     df = df.rename(columns={"Name": "Class"})
 
-    # Add ORDER
+    # Add ORDER information
     df = pd.merge(df, df_order[["Order_ID", "Name"]], on="Order_ID", how="left")
-
-    # Rename column 'Name' in 'Order'
     df = df.rename(columns={"Name": "Order"})
 
-    # Add FAMILY
+    # Add FAMILY information
     df = pd.merge(df, df_family[["Family_ID", "Name"]], on="Family_ID", how="left")
-
-    # Rename column 'Name_' in 'Family'
     df = df.rename(columns={"Name": "Family"})
 
-    # Add GENUS
+    # Add GENUS information
     df = pd.merge(df, df_genus[["Genus_ID", "Name"]], on="Genus_ID", how="left")
-
-    # Rename column 'Name' in 'Genus'
     df = df.rename(columns={"Name": "Genus"})
 
-    # Add SPECIES
+    # Add SPECIES information
     df = pd.merge(df, df_species[["Species_ID", "Name"]], on="Species_ID", how="left")
-
-    # Rename column 'Name_' in 'Species'
     df = df.rename(columns={"Name": "Species"})
 
-    # Drop merged columns
+    # Optionally, drop merged identifier columns
     df = df.drop(
         columns=[
             "Species_ID",
