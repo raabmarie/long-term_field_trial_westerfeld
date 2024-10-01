@@ -1,6 +1,6 @@
 import pandas as pd
-from prep_functions import prep_table_experiment
-from prep_functions import prep_table_taxonomy
+from common import prep_table_experiment
+from common import prep_table_taxonomy
 
 # Load data from CSV file
 df_beneficial = pd.read_csv("lte_westerfeld.V1_0_BENEFICIAL.csv")

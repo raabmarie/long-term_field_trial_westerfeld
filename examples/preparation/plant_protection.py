@@ -1,5 +1,5 @@
 import pandas as pd
-from prep_functions import prep_table_experiment
+from common import prep_table_experiment
 
 # Load data from CSV file
 df_plant_protection_product_type = pd.read_csv(

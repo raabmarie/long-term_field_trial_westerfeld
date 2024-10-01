@@ -55,7 +55,7 @@ names = []
 observations = []
 features = []
 for name in data_table_names:
-    file_path = f"../{FILE_NAME_PREFIX}{name}.csv"
+    file_path = f"../../{FILE_NAME_PREFIX}{name}.csv"
     df = pd.read_csv(file_path)
     category = mapping[name]
     categories.append(category)
