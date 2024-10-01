@@ -3,12 +3,14 @@ import pandas as pd
 
 def prepare_table_experiment(df):
     # Load CSV files
-    df_plot = pd.read_csv("lte_westerfeld.V1_0_PLOT.csv")
-    df_experimental_setup = pd.read_csv("lte_westerfeld.V1_0_EXPERIMENTAL_SETUP.csv")
-    df_crop = pd.read_csv("lte_westerfeld.V1_0_CROP.csv")
-    df_treatment = pd.read_csv("lte_westerfeld.V1_0_TREATMENT.csv")
-    df_factor_1_level = pd.read_csv("lte_westerfeld.V1_0_FACTOR_1_LEVEL.csv")
-    df_factor_2_level = pd.read_csv("lte_westerfeld.V1_0_FACTOR_2_LEVEL.csv")
+    df_plot = pd.read_csv("../../lte_westerfeld.V1_0_PLOT.csv")
+    df_experimental_setup = pd.read_csv(
+        "../../lte_westerfeld.V1_0_EXPERIMENTAL_SETUP.csv"
+    )
+    df_crop = pd.read_csv("../../lte_westerfeld.V1_0_CROP.csv")
+    df_treatment = pd.read_csv("../../lte_westerfeld.V1_0_TREATMENT.csv")
+    df_factor_1_level = pd.read_csv("../../lte_westerfeld.V1_0_FACTOR_1_LEVEL.csv")
+    df_factor_2_level = pd.read_csv("../../lte_westerfeld.V1_0_FACTOR_2_LEVEL.csv")
 
     # Check if Crop_ID is already available
     if "Crop_ID" in df.columns:
@@ -67,13 +69,13 @@ def prepare_table_experiment(df):
 
 def prepare_table_taxonomy(df):
     # Load CSV files
-    df_kingdom = pd.read_csv("lte_westerfeld.V1_0_KINGDOM.csv")
-    df_phylum = pd.read_csv("lte_westerfeld.V1_0_PHYLUM.csv")
-    df_class = pd.read_csv("lte_westerfeld.V1_0_CLASS.csv")
-    df_family = pd.read_csv("lte_westerfeld.V1_0_FAMILY.csv")
-    df_order = pd.read_csv("lte_westerfeld.V1_0_ORDER.csv")
-    df_genus = pd.read_csv("lte_westerfeld.V1_0_GENUS.csv")
-    df_species = pd.read_csv("lte_westerfeld.V1_0_SPECIES.csv")
+    df_kingdom = pd.read_csv("../../lte_westerfeld.V1_0_KINGDOM.csv")
+    df_phylum = pd.read_csv("../../lte_westerfeld.V1_0_PHYLUM.csv")
+    df_class = pd.read_csv("../../lte_westerfeld.V1_0_CLASS.csv")
+    df_family = pd.read_csv("../../lte_westerfeld.V1_0_FAMILY.csv")
+    df_order = pd.read_csv("../../lte_westerfeld.V1_0_ORDER.csv")
+    df_genus = pd.read_csv("../../lte_westerfeld.V1_0_GENUS.csv")
+    df_species = pd.read_csv("../../lte_westerfeld.V1_0_SPECIES.csv")
 
     # Add KINGDOM information
     df = pd.merge(df, df_kingdom[["Kingdom_ID", "Name"]], on="Kingdom_ID", how="left")

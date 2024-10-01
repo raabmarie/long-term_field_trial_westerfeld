@@ -2,9 +2,9 @@ import pandas as pd
 from common import prepare_table_experiment
 
 # Load CSV files
-df_plant_lab = pd.read_csv("lte_westerfeld.V1_0_PLANT_LAB.csv")
-df_plant_sampling = pd.read_csv("lte_westerfeld.V1_0_PLANT_SAMPLING.csv")
-df_beneficial = pd.read_csv("lte_westerfeld.V1_0_BENEFICIAL.csv")
+df_plant_lab = pd.read_csv("../../lte_westerfeld.V1_0_PLANT_LAB.csv")
+df_plant_sampling = pd.read_csv("../../lte_westerfeld.V1_0_PLANT_SAMPLING.csv")
+df_beneficial = pd.read_csv("../../lte_westerfeld.V1_0_BENEFICIAL.csv")
 
 # Add PLANT_SAMPLING information
 df_plant_lab = pd.merge(

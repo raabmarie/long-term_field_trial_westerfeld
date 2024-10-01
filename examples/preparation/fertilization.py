@@ -2,8 +2,8 @@ import pandas as pd
 from common import prepare_table_experiment
 
 # Load CSV files
-df_fertilizer = pd.read_csv("lte_westerfeld.V1_0_FERTILIZER.csv")
-df_fertilization = pd.read_csv("lte_westerfeld.V1_0_FERTILIZATION.csv")
+df_fertilizer = pd.read_csv("../../lte_westerfeld.V1_0_FERTILIZER.csv")
+df_fertilization = pd.read_csv("../../lte_westerfeld.V1_0_FERTILIZATION.csv")
 
 # Add FERTILIZER information
 df_fertilization = pd.merge(

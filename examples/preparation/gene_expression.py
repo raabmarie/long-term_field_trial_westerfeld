@@ -2,11 +2,11 @@ import pandas as pd
 from common import prepare_table_experiment
 
 # Load CSV files
-df_gene_expression = pd.read_csv("lte_westerfeld.V1_0_GENE_EXPRESSION.csv")
+df_gene_expression = pd.read_csv("../../lte_westerfeld.V1_0_GENE_EXPRESSION.csv")
 df_gene_expression_category = pd.read_csv(
-    "lte_westerfeld.V1_0_GENE_EXPRESSION_CATEGORY.csv"
+    "../../lte_westerfeld.V1_0_GENE_EXPRESSION_CATEGORY.csv"
 )
-df_beneficial = pd.read_csv("lte_westerfeld.V1_0_BENEFICIAL.csv")
+df_beneficial = pd.read_csv("../../lte_westerfeld.V1_0_BENEFICIAL.csv")
 
 # Add BENEFICIAL information
 df_gene_expression = pd.merge(

@@ -3,11 +3,11 @@ from common import prepare_table_experiment
 from common import prepare_table_taxonomy
 
 # Load CSV files
-df_beneficial = pd.read_csv("lte_westerfeld.V1_0_BENEFICIAL.csv")
-df_bioproject = pd.read_csv("lte_westerfeld.V1_0_BIOPROJECT.csv")
-df_habitat = pd.read_csv("lte_westerfeld.V1_0_HABITAT.csv")
+df_beneficial = pd.read_csv(f"../../lte_westerfeld.V1_0_BENEFICIAL.csv")
+df_bioproject = pd.read_csv(f"../../lte_westerfeld.V1_0_BIOPROJECT.csv")
+df_habitat = pd.read_csv(f"../../lte_westerfeld.V1_0_HABITAT.csv")
 dtype_dict = {"Seq_ID": "str", "ACC_Num": "str", "OTU_ID": "str"}
-df_bacteria = pd.read_csv("lte_westerfeld.V1_0_BACTERIA.csv", dtype=dtype_dict)
+df_bacteria = pd.read_csv(f"../../lte_westerfeld.V1_0_BACTERIA.csv", dtype=dtype_dict)
 
 # Add BENEFICIAL information
 df_bacteria = pd.merge(

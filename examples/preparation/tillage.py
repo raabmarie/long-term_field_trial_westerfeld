@@ -2,8 +2,8 @@ import pandas as pd
 from common import prepare_table_experiment
 
 # Load CSV files
-df_tillage = pd.read_csv("lte_westerfeld.V1_0_TILLAGE.csv")
-df_tillage_measure = pd.read_csv("lte_westerfeld.V1_0_TILLAGE_MEASURE.csv")
+df_tillage = pd.read_csv("../../lte_westerfeld.V1_0_TILLAGE.csv")
+df_tillage_measure = pd.read_csv("../../lte_westerfeld.V1_0_TILLAGE_MEASURE.csv")
 
 # Add TILLAGE_MEASURE information
 df_tillage = pd.merge(

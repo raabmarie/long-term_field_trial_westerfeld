@@ -2,8 +2,8 @@ import pandas as pd
 from common import prepare_table_experiment
 
 # Load CSV files
-df_root = pd.read_csv("lte_westerfeld.V1_0_ROOT.csv")
-df_beneficial = pd.read_csv("lte_westerfeld.V1_0_BENEFICIAL.csv")
+df_root = pd.read_csv("../../lte_westerfeld.V1_0_ROOT.csv")
+df_beneficial = pd.read_csv("../../lte_westerfeld.V1_0_BENEFICIAL.csv")
 
 # Add BENEFICIAL information
 df_root = pd.merge(

@@ -3,12 +3,12 @@ from common import prepare_table_experiment
 
 # Load CSV files
 df_plant_protection_product_type = pd.read_csv(
-    "lte_westerfeld.V1_0_PLANT_PROTECTION_PRODUCT_TYPE.csv"
+    "../../lte_westerfeld.V1_0_PLANT_PROTECTION_PRODUCT_TYPE.csv"
 )
 df_plant_protection_product = pd.read_csv(
-    "lte_westerfeld.V1_0_PLANT_PROTECTION_PRODUCT.csv"
+    "../../lte_westerfeld.V1_0_PLANT_PROTECTION_PRODUCT.csv"
 )
-df_plant_protection = pd.read_csv("lte_westerfeld.V1_0_PLANT_PROTECTION.csv")
+df_plant_protection = pd.read_csv("../../lte_westerfeld.V1_0_PLANT_PROTECTION.csv")
 
 # Rename column 'Name_EN' to 'Plant_Protection_Product'
 df_plant_protection_product = df_plant_protection_product.rename(

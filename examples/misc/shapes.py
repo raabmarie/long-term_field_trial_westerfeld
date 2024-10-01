@@ -44,7 +44,6 @@ mapping = {
     "ROOT": "Plant data",
 }
 
-FILE_NAME_PREFIX = "lte_westerfeld.V1_0_"
 data_table_names = list(mapping.keys())
 
 # Collect data table information
@@ -55,7 +54,7 @@ names = []
 observations = []
 features = []
 for name in data_table_names:
-    file_path = f"../../{FILE_NAME_PREFIX}{name}.csv"
+    file_path = f"../../lte_westerfeld.V1_0_{name}.csv"
     df = pd.read_csv(file_path)
     category = mapping[name]
     categories.append(category)
