@@ -17,7 +17,7 @@ The following few steps are necessary to get started using the dataset in combin
 
 Clone the repository with [Git](https://www.git-scm.com):
 ```
-git clone https://github.com/laschuet/long-term_field_trial_westerfeld.git
+git clone https://github.com/raabmarie/long-term_field_trial_westerfeld.git
 ```
 
 Alternatively, [download](https://github.com/raabmarie/long-term_field_trial_westerfeld/archive/refs/heads/main.zip)
