@@ -1,7 +1,7 @@
 import pandas as pd
 from common import prepare_table_experiment
 
-# Load data from CSV file
+# Load CSV files
 df_plant_protection_product_type = pd.read_csv(
     "lte_westerfeld.V1_0_PLANT_PROTECTION_PRODUCT_TYPE.csv"
 )
@@ -10,25 +10,23 @@ df_plant_protection_product = pd.read_csv(
 )
 df_plant_protection = pd.read_csv("lte_westerfeld.V1_0_PLANT_PROTECTION.csv")
 
-# Rename column 'Name_EN' in 'Plant_Protection_Product'
+# Rename column 'Name_EN' to 'Plant_Protection_Product'
 df_plant_protection_product = df_plant_protection_product.rename(
     columns={"Name_EN": "Plant_Protection_Product"}
 )
 
-# Add PLANT_PROTECTION_PRODUCT_TYPE
+# Add PLANT_PROTECTION_PRODUCT_TYPE information
 df_plant_protection_product = pd.merge(
     df_plant_protection_product,
     df_plant_protection_product_type[["Plant_Protection_Product_Type_ID", "Name_EN"]],
     on=["Plant_Protection_Product_Type_ID"],
     how="left",
 )
-
-# Rename column 'Name_EN' in 'Plant_Protection_Product_Type'
 df_plant_protection_product = df_plant_protection_product.rename(
     columns={"Name_EN": "Plant_Protection_Product_Type"}
 )
 
-# Add PLANT_PROTECTION_PRODUCT
+# Add PLANT_PROTECTION_PRODUCT information
 df_plant_protection = pd.merge(
     df_plant_protection,
     df_plant_protection_product[
@@ -42,10 +40,10 @@ df_plant_protection = pd.merge(
     how="left",
 )
 
-# Drop foreign keys that are no longer needed
+# Drop merged identifier columns
 df_plant_protection = df_plant_protection.drop(columns=["Plant_Protection_Product_ID"])
 
-# Add the experiment information to the data frame (Crop, Tillage, Fertilization)
+# Add experiment information
 df_plant_protection = prepare_table_experiment(df_plant_protection)
 
 print(df_plant_protection.columns)

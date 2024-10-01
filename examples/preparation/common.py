@@ -57,7 +57,7 @@ def prepare_table_experiment(df):
     )
     df = df.rename(columns={"Name_EN": "Fertilization"})
 
-    # Optionally, drop merged identifier columns
+    # Drop merged identifier columns
     df = df.drop(
         columns=["Factor_2_Level_ID", "Factor_1_Level_ID", "Treatment_ID", "Crop_ID"]
     )
@@ -103,7 +103,7 @@ def prepare_table_taxonomy(df):
     df = pd.merge(df, df_species[["Species_ID", "Name"]], on="Species_ID", how="left")
     df = df.rename(columns={"Name": "Species"})
 
-    # Optionally, drop merged identifier columns
+    # Drop merged identifier columns
     df = df.drop(
         columns=[
             "Species_ID",
