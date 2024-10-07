@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from validation.bonares_transformation.common import validate
+from common import validate
 
 db_file_path = "Westerfeld_DB_V_1_18.xlsx"
 rd_file_path = "Soil_Lab_Results_2009-2021.xlsx"
