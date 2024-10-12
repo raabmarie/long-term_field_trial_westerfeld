@@ -30,6 +30,10 @@ def prepare_table_experiment(df):
         )
 
     # Add CROP information
+    # Differentiation between Winter Wheat 1 and Winter Wheat 2
+    df_crop.loc[df_crop["Crop_ID"] == 5, "Name_EN"] = "Winter Wheat 1"
+    df_crop.loc[df_crop["Crop_ID"] == 4, "Name_EN"] = "Winter Wheat 2"
+    
     df = pd.merge(df, df_crop[["Crop_ID", "Name_EN"]], on="Crop_ID", how="left")
     df = df.rename(columns={"Name_EN": "Crop"})
 
