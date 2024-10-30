@@ -175,6 +175,15 @@ Directory [`validation/manual_duplicates`](validation/manual_duplicates):
 We have used these source code files to check the bacteria and fungi data records for data duplicates. We have used this
 manual approach because these specific data records couldn't be processed by DQ-Kit due to some file size limits.
 
+## Raw data transformation
+
+There are some source code files in the [`transformation`](transformation)
+directory. We used these files in combination with manual data transformation
+steps during the pre-processing of the raw data. Again, we only provide these
+files for documentation purposes and to ensure traceability and transparency. It
+is not possible to run these source code files because we do not provide the raw
+data.
+
 ## License
 
 This work is licensed under the [MIT License](./LICENSE.txt).
