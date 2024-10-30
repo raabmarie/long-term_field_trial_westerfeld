@@ -148,7 +148,7 @@ seen in the paper. And second, it prints out a Markdown table which looks like t
 
 ## Validation
 
-There a some source code and HTML files in the [`validation`](validation) directory. These reflect some steps and
+There are some source code and HTML files in the [`validation`](validation) directory. These reflect some steps and
 results of our data quality assurance measures. We only provide these files for documentation purposes and to ensure
 traceability and transparency. It is not possible to run these source code files on your end because we cannot supply
 the raw data.
