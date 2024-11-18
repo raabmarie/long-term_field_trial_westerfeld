@@ -92,13 +92,13 @@ subset of all columns are shown):
 Or, for example, run `python3 examples/preparation/plant_protection.py` which
 would create the following table (only the first five rows are shown):
 
-|    |   Plant_Protection_ID |   Experimental_Year | Date                |   Plot_ID |   Quantity_Liquid |   Quantity_Solid | Plant_Protection_Product   | Plant_Protection_Product_Type   | Crop         | Tillage    | Fertilization   |
-|---:|----------------------:|--------------------:|:--------------------|----------:|------------------:|-----------------:|:---------------------------|:--------------------------------|:-------------|:-----------|:----------------|
-|  0 |                     1 |                2004 | 2004-03-30T00:00:00 |         1 |              0.25 |              nan | Lotus                      | Herbicide                       | Winter wheat | Cultivator | extensive       |
-|  1 |                     2 |                2004 | 2004-04-20T00:00:00 |         1 |              1    |              nan | CCC                        | Growth_regulator                | Winter wheat | Cultivator | extensive       |
-|  2 |                     3 |                2004 | 2004-03-30T00:00:00 |         1 |              2.5  |              nan | Basagran_DP                | Herbicide                       | Winter wheat | Cultivator | extensive       |
-|  3 |                     4 |                2004 | 2004-06-02T00:00:00 |         2 |              1.2  |              nan | Opus_Top                   | Fungicide                       | Winter wheat | Cultivator | intensive       |
-|  4 |                     5 |                2004 | 2004-03-30T00:00:00 |         2 |              0.25 |              nan | Lotus                      | Herbicide                       | Winter wheat | Cultivator | intensive       |
+|    |   Plant_Protection_ID |   Experimental_Year | Date                |   Plot_ID |   Quantity_Liquid |   Quantity_Solid | Plant_Protection_Product   | Plant_Protection_Product_Type   | Crop           | Tillage    | Fertilization   |
+|---:|----------------------:|--------------------:|:--------------------|----------:|------------------:|-----------------:|:---------------------------|:--------------------------------|:---------------|:-----------|:----------------|
+|  0 |                     1 |                2004 | 2004-03-30T00:00:00 |         1 |              0.25 |              nan | Lotus                      | Herbicide                       | Winter wheat 2 | Cultivator | extensive       |
+|  1 |                     2 |                2004 | 2004-04-20T00:00:00 |         1 |              1    |              nan | CCC                        | Growth_regulator                | Winter wheat 2 | Cultivator | extensive       |
+|  2 |                     3 |                2004 | 2004-03-30T00:00:00 |         1 |              2.5  |              nan | Basagran_DP                | Herbicide                       | Winter wheat 2 | Cultivator | extensive       |
+|  3 |                     4 |                2004 | 2004-06-02T00:00:00 |         2 |              1.2  |              nan | Opus_Top                   | Fungicide                       | Winter wheat 2 | Cultivator | intensive       |
+|  4 |                     5 |                2004 | 2004-03-30T00:00:00 |         2 |              0.25 |              nan | Lotus                      | Herbicide                       | Winter wheat 2 | Cultivator | intensive       |
 
 ### Data records per year
 
