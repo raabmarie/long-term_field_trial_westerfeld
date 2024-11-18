@@ -42,4 +42,4 @@ df_bacteria = prepare_table_experiment(df_bacteria)
 # Add taxonomy information
 df_bacteria = prepare_table_taxonomy(df_bacteria)
 
-print(list(df_bacteria.columns))
+print(df_bacteria)
