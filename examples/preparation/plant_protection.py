@@ -46,4 +46,5 @@ df_plant_protection = df_plant_protection.drop(columns=["Plant_Protection_Produc
 # Add experiment information
 df_plant_protection = prepare_table_experiment(df_plant_protection)
 
-print(df_plant_protection)
+# Export data to excel
+df_plant_protection.to_excel('plant_protection.xlsx', index=False)
