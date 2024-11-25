@@ -42,4 +42,5 @@ df_bacteria = prepare_table_experiment(df_bacteria)
 # Add taxonomy information
 df_bacteria = prepare_table_taxonomy(df_bacteria)
 
-print(df_bacteria)
+# Export data to excel
+df_bacteria.to_excel('bacteria.xlsx', index=False)
