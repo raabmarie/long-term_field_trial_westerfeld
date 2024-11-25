@@ -17,4 +17,5 @@ df_root = df_root.drop(columns=["Beneficial_ID"])
 # Add experiment information
 df_root = prepare_table_experiment(df_root)
 
-print(list(df_root.columns))
+# Export data to excel
+df_root.to_excel('root.xlsx', index=False)
