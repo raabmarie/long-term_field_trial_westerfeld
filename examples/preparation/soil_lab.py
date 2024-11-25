@@ -26,4 +26,5 @@ df_soil_lab = df_soil_lab.drop(columns=["Beneficial_ID", "Soil_Sampling_ID"])
 # Add experiment information
 df_soil_lab = prepare_table_experiment(df_soil_lab)
 
-print(list(df_soil_lab.columns))
+# Export data to excel
+df_soil_lab.to_excel('soil_lab.xlsx', index=False)
