@@ -39,4 +39,5 @@ df_fungi = prepare_table_experiment(df_fungi)
 # Add taxonomy information
 df_fungi = prepare_table_taxonomy(df_fungi)
 
-print(list(df_fungi.columns))
+# Export data to excel
+df_fungi.to_excel('fungi.xlsx', index=False)
