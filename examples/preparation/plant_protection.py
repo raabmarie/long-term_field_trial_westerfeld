@@ -48,3 +48,5 @@ df_plant_protection = prepare_table_experiment(df_plant_protection)
 
 # Export data to excel
 df_plant_protection.to_excel("plant_protection.xlsx", index=False)
+
+print(df_plant_protection)

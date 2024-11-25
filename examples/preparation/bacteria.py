@@ -44,3 +44,5 @@ df_bacteria = prepare_table_taxonomy(df_bacteria)
 
 # Export data to excel
 df_bacteria.to_excel("bacteria.xlsx", index=False)
+
+print(df_bacteria)
