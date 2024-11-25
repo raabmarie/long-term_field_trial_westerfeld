@@ -40,4 +40,4 @@ df_fungi = prepare_table_experiment(df_fungi)
 df_fungi = prepare_table_taxonomy(df_fungi)
 
 # Export data to excel
-df_fungi.to_excel('fungi.xlsx', index=False)
+df_fungi.to_excel("fungi.xlsx", index=False)

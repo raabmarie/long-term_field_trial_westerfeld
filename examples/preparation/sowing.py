@@ -30,4 +30,4 @@ df_sowing = df_sowing.drop(columns=["Plant_Variety_ID", "Seed_Stock_ID"])
 df_sowing = prepare_table_experiment(df_sowing)
 
 # Export data to excel
-df_sowing.to_excel('sowing.xlsx', index=False)
+df_sowing.to_excel("sowing.xlsx", index=False)

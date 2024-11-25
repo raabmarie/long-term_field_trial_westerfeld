@@ -12,7 +12,7 @@ df_harvest = pd.merge(
     on=["Harvest_ID"],
     how="left",
 )
-  
+
 # Drop merged identifier columns
 df_harvest = df_harvest.drop(columns=["YIELD_ID"])
 
@@ -20,4 +20,4 @@ df_harvest = df_harvest.drop(columns=["YIELD_ID"])
 df_harvest = prepare_table_experiment(df_harvest)
 
 # Export data to excel
-df_harvest.to_excel('harvest.xlsx', index=False)
+df_harvest.to_excel("harvest.xlsx", index=False)

@@ -18,4 +18,4 @@ df_root = df_root.drop(columns=["Beneficial_ID"])
 df_root = prepare_table_experiment(df_root)
 
 # Export data to excel
-df_root.to_excel('root.xlsx', index=False)
+df_root.to_excel("root.xlsx", index=False)

@@ -27,4 +27,4 @@ df_plant_lab = df_plant_lab.drop(columns=["Beneficial_ID", "Plant_Sampling_ID"])
 df_plant_lab = prepare_table_experiment(df_plant_lab)
 
 # Export data to excel
-df_plant_lab.to_excel('plant_lab.xlsx', index=False)
+df_plant_lab.to_excel("plant_lab.xlsx", index=False)

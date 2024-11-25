@@ -37,4 +37,4 @@ df_gene_expression = df_gene_expression.drop(
 df_gene_expression = prepare_table_experiment(df_gene_expression)
 
 # Export data to excel
-df_gene_expression.to_excel('gene_expression.xlsx', index=False)
+df_gene_expression.to_excel("gene_expression.xlsx", index=False)

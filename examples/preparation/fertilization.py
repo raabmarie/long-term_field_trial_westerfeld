@@ -21,4 +21,4 @@ df_fertilization = df_fertilization.drop(columns=["Fertilizer_ID"])
 df_fertilization = prepare_table_experiment(df_fertilization)
 
 # Export data to excel
-df_fertilization.to_excel('fertilization.xlsx', index=False)
+df_fertilization.to_excel("fertilization.xlsx", index=False)
