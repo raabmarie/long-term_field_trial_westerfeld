@@ -20,4 +20,5 @@ df_tillage = df_tillage.drop(columns=["Tillage_Measure_ID"])
 # Add experiment information
 df_tillage = prepare_table_experiment(df_tillage)
 
-print(list(df_tillage.columns))
+# Export data to excel
+df_tillage.to_excel('tillage.xlsx', index=False)
