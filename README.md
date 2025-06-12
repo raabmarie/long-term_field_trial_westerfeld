@@ -5,7 +5,7 @@
 [![code](https://img.shields.io/badge/code%20DOI-10.5281%2Fzenodo.13709848-blue)](https://doi.org/10.5281/zenodo.13709848)
 [![code style](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
 
-Read our [PUBLISHED ARTICLE](https://doi.org/10.1038/s41597-025-05314-z).
+Feel free to read the related [PUBLICATION](https://doi.org/10.1038/s41597-025-05314-z).
 
 Accompanying repository for the data set ["Westerfeld: Long-term field trial on
 tillage and fertilization in crop
