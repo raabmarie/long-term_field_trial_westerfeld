@@ -1,7 +1,11 @@
 # Long-term field trial Westerfeld
 
 [![code style](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
-[![DOI](https://zenodo.org/badge/793402108.svg)](https://doi.org/10.5281/zenodo.13709848)
+[![paper](https://img.shields.io/badge/paper%20DOI-10.1038%2Fs41597--025--05314--z-red)](https://doi.org/10.1038/s41597-025-05314-z)
+[![dataset](https://img.shields.io/badge/dataset%20DOI-10.20387%2Fbonares--w669--gdsd-green-green)](https://doi.org/10.20387/bonares-w669-gdsd)
+[![code](https://img.shields.io/badge/code%20DOI-10.5281%2Fzenodo.13709848-blue)](https://doi.org/10.5281/zenodo.13709848)
+
+Read our [PUBLISHED ARTICLE](https://doi.org/10.1038/s41597-025-05314-z).
 
 Accompanying repository for the data set ["Westerfeld: Long-term field trial on
 tillage and fertilization in crop
